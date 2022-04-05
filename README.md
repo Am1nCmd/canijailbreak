@@ -8,7 +8,7 @@ This website will help you to find the suitable jailbreak for your device and iO
 We detect your browser's user agent as input, then return it by displaying the availability of jailbreak tools based on the device and iOS used.
 
 # help us to improve?
-edit file list-jb-tools.xls
+edit file list-jb-tools.csv
 
 # credit
 - @am1ncmd
