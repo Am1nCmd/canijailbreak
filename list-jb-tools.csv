@@ -130,36 +130,36 @@ id;device;ios;tool_jb;link;icon;supdev;note
 129;iPhone;13_6_1;Odyssey;https://theodyssey.dev/;apple;;
 130;iPhone;13_7;Checkra1n;https://checkra.in/;apple;6s - X;
 131;iPhone;13_7;Odyssey;https://theodyssey.dev/;apple;;
-132;iPhone;14_0;Checkra1n;https://checkra.in/;apple;6s - X;A11 devices on iOS 14.0 and above require removing the passcode and enabling Skip A11 BPR check in the options. This is not recommended, but it's there.;
+132;iPhone;14_0;Checkra1n;https://checkra.in/;apple;6s - X;A11 devices on iOS 14.0 and above require removing the passcode and enabling Skip A11 BPR check in the options. This is not recommended, but it's there.
 133;iPhone;14_0;Unc0ver;https://unc0ver.dev/;apple;6s - 11 Series;
 134;iPhone;14_0;Taurine;https://taurine.app/;apple;6s - 11 Series;
-135;iPhone;14_0_1;Checkra1n;https://checkra.in/;apple;6s - X;A11 devices on iOS 14.0 and above require removing the passcode and enabling Skip A11 BPR check in the options. This is not recommended, but it's there.;
+135;iPhone;14_0_1;Checkra1n;https://checkra.in/;apple;6s - X;A11 devices on iOS 14.0 and above require removing the passcode and enabling Skip A11 BPR check in the options. This is not recommended, but it's there.
 136;iPhone;14_0_1;Unc0ver;https://unc0ver.dev/;apple;6s - 11 Series;
 137;iPhone;14_0_1;Taurine;https://taurine.app/;apple;6s - 11 Series;
-138;iPhone;14_1;Checkra1n;https://checkra.in/;apple;6s - X;A11 devices on iOS 14.0 and above require removing the passcode and enabling Skip A11 BPR check in the options. This is not recommended, but it's there.;
+138;iPhone;14_1;Checkra1n;https://checkra.in/;apple;6s - X;A11 devices on iOS 14.0 and above require removing the passcode and enabling Skip A11 BPR check in the options. This is not recommended, but it's there.
 139;iPhone;14_1;Unc0ver;https://unc0ver.dev/;apple;6s - 12 Series;
 140;iPhone;14_1;Taurine;https://taurine.app/;apple;6s - 12 Series;
-141;iPhone;14_2;Checkra1n;https://checkra.in/;apple;6s - X;A11 devices on iOS 14.0 and above require removing the passcode and enabling Skip A11 BPR check in the options. This is not recommended, but it's there.;
+141;iPhone;14_2;Checkra1n;https://checkra.in/;apple;6s - X;A11 devices on iOS 14.0 and above require removing the passcode and enabling Skip A11 BPR check in the options. This is not recommended, but it's there.
 142;iPhone;14_2;Unc0ver;https://unc0ver.dev/;apple;6s - 12 Series;
 143;iPhone;14_2;Taurine;https://taurine.app/;apple;6s - 12 Series;
-144;iPhone;14_3;Checkra1n;https://checkra.in/;apple;6s - X;A11 devices on iOS 14.0 and above require removing the passcode and enabling Skip A11 BPR check in the options. This is not recommended, but it's there.;
+144;iPhone;14_3;Checkra1n;https://checkra.in/;apple;6s - X;A11 devices on iOS 14.0 and above require removing the passcode and enabling Skip A11 BPR check in the options. This is not recommended, but it's there.
 145;iPhone;14_3;Unc0ver;https://unc0ver.dev/;apple;6s - 12 Series;
 146;iPhone;14_3;Taurine;https://taurine.app/;apple;6s - 12 Series;
-147;iPhone;14_4;Checkra1n;https://checkra.in/;apple;6s - X;A11 devices on iOS 14.0 and above require removing the passcode and enabling Skip A11 BPR check in the options. This is not recommended, but it's there.;
-148;iPhone;14_4;Unc0ver;https://unc0ver.dev/;apple;XR - 12 Series;Unc0ver with Fugu14 can only be installed via AltStore;
-149;iPhone;14_4_1;Checkra1n;https://checkra.in/;apple;6s - X;A11 devices on iOS 14.0 and above require removing the passcode and enabling Skip A11 BPR check in the options. This is not recommended, but it's there.;
-150;iPhone;14_4_1;Unc0ver;https://unc0ver.dev/;apple;XR - 12 Series;Unc0ver with Fugu14 can only be installed via AltStore;
-151;iPhone;14_4_2;Checkra1n;https://checkra.in/;apple;6s - X;A11 devices on iOS 14.0 and above require removing the passcode and enabling Skip A11 BPR check in the options. This is not recommended, but it's there.;
-152;iPhone;14_4_2;Unc0ver;https://unc0ver.dev/;apple;XR - 12 Series;Unc0ver with Fugu14 can only be installed via AltStore;
-153;iPhone;14_5;Checkra1n;https://checkra.in/;apple;6s - X;A11 devices on iOS 14.0 and above require removing the passcode and enabling Skip A11 BPR check in the options. This is not recommended, but it's there.;
-154;iPhone;14_5;Unc0ver;https://unc0ver.dev/;apple;XR - 12 Series;Unc0ver with Fugu14 can only be installed via AltStore;
-155;iPhone;14_5_1;Checkra1n;https://checkra.in/;apple;6s - X;A11 devices on iOS 14.0 and above require removing the passcode and enabling Skip A11 BPR check in the options. This is not recommended, but it's there.;
-156;iPhone;14_5_1;Unc0ver;https://unc0ver.dev/;apple;XR - 12 Series;Unc0ver with Fugu14 can only be installed via AltStore;
-157;iPhone;14_6;Checkra1n;https://checkra.in/;apple;6s - X;A11 devices on iOS 14.0 and above require removing the passcode and enabling Skip A11 BPR check in the options. This is not recommended, but it's there.;
-159;iPhone;14_7;Checkra1n;https://checkra.in/;apple;6s - X;A11 devices on iOS 14.0 and above require removing the passcode and enabling Skip A11 BPR check in the options. This is not recommended, but it's there.;
+147;iPhone;14_4;Checkra1n;https://checkra.in/;apple;6s - X;A11 devices on iOS 14.0 and above require removing the passcode and enabling Skip A11 BPR check in the options. This is not recommended, but it's there.
+148;iPhone;14_4;Unc0ver;https://unc0ver.dev/;apple;XR - 12 Series;Unc0ver with Fugu14 can only be installed via AltStore
+149;iPhone;14_4_1;Checkra1n;https://checkra.in/;apple;6s - X;A11 devices on iOS 14.0 and above require removing the passcode and enabling Skip A11 BPR check in the options. This is not recommended, but it's there.
+150;iPhone;14_4_1;Unc0ver;https://unc0ver.dev/;apple;XR - 12 Series;Unc0ver with Fugu14 can only be installed via AltStore
+151;iPhone;14_4_2;Checkra1n;https://checkra.in/;apple;6s - X;A11 devices on iOS 14.0 and above require removing the passcode and enabling Skip A11 BPR check in the options. This is not recommended, but it's there.
+152;iPhone;14_4_2;Unc0ver;https://unc0ver.dev/;apple;XR - 12 Series;Unc0ver with Fugu14 can only be installed via AltStore
+153;iPhone;14_5;Checkra1n;https://checkra.in/;apple;6s - X;A11 devices on iOS 14.0 and above require removing the passcode and enabling Skip A11 BPR check in the options. This is not recommended, but it's there.
+154;iPhone;14_5;Unc0ver;https://unc0ver.dev/;apple;XR - 12 Series;Unc0ver with Fugu14 can only be installed via AltStore
+155;iPhone;14_5_1;Checkra1n;https://checkra.in/;apple;6s - X;A11 devices on iOS 14.0 and above require removing the passcode and enabling Skip A11 BPR check in the options. This is not recommended, but it's there.
+156;iPhone;14_5_1;Unc0ver;https://unc0ver.dev/;apple;XR - 12 Series;Unc0ver with Fugu14 can only be installed via AltStore
+157;iPhone;14_6;Checkra1n;https://checkra.in/;apple;6s - X;A11 devices on iOS 14.0 and above require removing the passcode and enabling Skip A11 BPR check in the options. This is not recommended, but it's there.
+159;iPhone;14_7;Checkra1n;https://checkra.in/;apple;6s - X;A11 devices on iOS 14.0 and above require removing the passcode and enabling Skip A11 BPR check in the options. This is not recommended, but it's there.
 160;iPhone;14_7;Unc0ver;https://unc0ver.dev/;apple;XR - 11 Series;
-161;iPhone;14_7_1;Checkra1n;https://checkra.in/;apple;6s - X;A11 devices on iOS 14.0 and above require removing the passcode and enabling Skip A11 BPR check in the options. This is not recommended, but it's there.;
+161;iPhone;14_7_1;Checkra1n;https://checkra.in/;apple;6s - X;A11 devices on iOS 14.0 and above require removing the passcode and enabling Skip A11 BPR check in the options. This is not recommended, but it's there.
 162;iPhone;14_7_1;Unc0ver;https://unc0ver.dev/;apple;XR - 11 Series;
-163;iPhone;14_8;Checkra1n;https://checkra.in/;apple;6s - X;A11 devices on iOS 14.0 and above require removing the passcode and enabling Skip A11 BPR check in the options. This is not recommended, but it's there.;
+163;iPhone;14_8;Checkra1n;https://checkra.in/;apple;6s - X;A11 devices on iOS 14.0 and above require removing the passcode and enabling Skip A11 BPR check in the options. This is not recommended, but it's there.
 164;iPhone;14_8;Unc0ver;https://unc0ver.dev/;apple;XR - 11 Series;
-165;iPhone;14_8_1;Checkra1n;https://checkra.in/;apple;6s - X;A11 devices on iOS 14.0 and above require removing the passcode and enabling Skip A11 BPR check in the options. This is not recommended, but it's there.;
+165;iPhone;14_8_1;Checkra1n;https://checkra.in/;apple;6s - X;A11 devices on iOS 14.0 and above require removing the passcode and enabling Skip A11 BPR check in the options. This is not recommended, but it's there.
