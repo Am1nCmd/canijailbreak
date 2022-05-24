@@ -70,7 +70,7 @@
                         <h4 class="card-title"></h4>
                         <div class="card-content">
                             <div class="alert alert-warning" role="alert">
-                                <h4 class="alert-heading">Sorry,</h4>
+                                <h4 class="alert-heading">Sorry :(</h4>
                                 <p>You are not on an iOS or iPadOS device. Are you using iPadOS? <a href="https://t.me/idiphone/3574" target="_blank">Check this out</a></p>
                             </div>
                         </div>
@@ -129,7 +129,7 @@
                                                         <h4 class="card-title"></h4>
                                                         <div class="card-content">
                                                             <div class="alert alert-success" role="alert">
-                                                                <h4 class="alert-heading"> Good News!</h4>
+                                                                <h4 class="alert-heading"> Good News! ^_^</h4>
                                                                 <p>Yes, you can jailbreak your <?php echo $devicenya ?> on iOS <?php echo $iosversion ?>
                                                             </div>
                                                         </div>
@@ -143,7 +143,7 @@
 											$hitung = mysqli_num_rows($tp);
 										?>
                                             <div class="col-md-6">
-                                                <h2>Available Jailbreaks (<?php echo $hitung;?>) : </h2>
+                                                <h4>Available Jailbreaks (<?php echo $hitung;?>) : </h4>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -195,7 +195,7 @@
                                             <h4 class="card-title"></h4>
                                             <div class="card-content">
                                                 <div class="alert alert-danger" role="alert">
-                                                    <h4 class="alert-heading">Sad News!</h4>
+                                                    <h4 class="alert-heading">Sadly :'(</h4>
                                                     <p>NO Jailbreak for <?php echo $devicenya ?> on iOS <?php echo $iosversion ?></p>
                                                 </div>
                                             </div>
@@ -226,11 +226,11 @@
     <script src="js/custom.min.js"></script>
 
 </body>
-
+    <br>
     <center><a href="https://docs.google.com/spreadsheets/d/1QjWyoDfaiF-TWhzVdvEMRqA3OQXsz6e8of3SxZB1W_M/edit?usp=sharing">Complete Jailbreak Chart ></a></center>
-    </br>
+    <br>
     <center><a href="https://appledb.dev/device-selection/">Devices Selection ></a></center>
-    </br><a style="color:black;"><center>Looking for FutureRestore?</center>
+    <br><a style="color:black;"><center>Looking for FutureRestore?</center>
         <center><a href="https://docs.google.com/spreadsheets/d/1Mb1UNm6g3yvdQD67M413GYSaJ4uoNhLgpkc7YKi3LBs/edit?fbclid=IwAR10JCtGhCg2RfIVUnIAjOAt4aMLoz80pWEL8Kqs2zaLX2bislT3KUU0Hw8#gid=0">SEP/BB Compability Chart ></a></center>
 
 	<?php include 'footer.php';?>
