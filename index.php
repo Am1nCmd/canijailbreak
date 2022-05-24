@@ -17,6 +17,32 @@
 <html lang="en">
 
 <head>
+    <style>
+    /* FOOTER */
+    footer .links {
+        font-size: 14px;
+        font-weight: 800;
+        white-space: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    footer .section {
+        padding: 12px 0;
+        border-bottom: 1px solid #2f2f2f;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    footer .section:last-child {
+        border-bottom: none;
+    }
+
+    .section p {
+        color: black;
+        font-size: 22px;
+    }
+    </style>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Tell the browser to be responsive to screen width -->
@@ -37,7 +63,7 @@
     <!--[if lt IE 9]>
     <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+    <![endif]-->
     <script src="//code.jquery.com/jquery-1.7.1.min.js"></script>
 </head>
 
@@ -153,7 +179,7 @@
                                             <div class="col-md-6">
                                                 <div class="card p-30">
                                                     <div class="media">
-                                                        <table border="0" width="100%">
+                                                        <table style="width:100%">
                                                             <tr align="center">
                                                                 <td colspan="2">
                                                                         <h2 align="center"><?php echo $data['tool_jb'] ?></h2>
@@ -226,12 +252,5 @@
     <script src="js/custom.min.js"></script>
 
 </body>
-    <br>
-    <center><a href="https://docs.google.com/spreadsheets/d/1QjWyoDfaiF-TWhzVdvEMRqA3OQXsz6e8of3SxZB1W_M/edit?usp=sharing">Complete Jailbreak Chart ></a></center>
-    <br>
-    <center><a href="https://appledb.dev/device-selection/">Devices Selection ></a></center>
-    <br><a style="color:black;"><center>Looking for FutureRestore?</center>
-        <center><a href="https://docs.google.com/spreadsheets/d/1Mb1UNm6g3yvdQD67M413GYSaJ4uoNhLgpkc7YKi3LBs/edit?fbclid=IwAR10JCtGhCg2RfIVUnIAjOAt4aMLoz80pWEL8Kqs2zaLX2bislT3KUU0Hw8#gid=0">SEP/BB Compability Chart ></a></center>
-
 	<?php include 'footer.php';?>
 </html>
