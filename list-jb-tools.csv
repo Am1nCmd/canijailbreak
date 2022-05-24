@@ -156,6 +156,7 @@ id;device;ios;tool_jb;link;icon;supdev;note
 155;iPhone;14_5_1;Checkra1n;https://checkra.in/;apple;6s - X;A11 devices on iOS 14.0 and above require removing the passcode and enabling Skip A11 BPR check in the options. This is not recommended, but it's there.
 156;iPhone;14_5_1;Unc0ver;https://unc0ver.dev/;apple;XR - 12 Series;Unc0ver with Fugu14 can only be installed via AltStore
 157;iPhone;14_6;Checkra1n;https://checkra.in/;apple;6s - X;A11 devices on iOS 14.0 and above require removing the passcode and enabling Skip A11 BPR check in the options. This is not recommended, but it's there.
+158;iPhone;14_6;Unc0ver;https://unc0ver.dev/;apple;XR - 11 Series;
 159;iPhone;14_7;Checkra1n;https://checkra.in/;apple;6s - X;A11 devices on iOS 14.0 and above require removing the passcode and enabling Skip A11 BPR check in the options. This is not recommended, but it's there.
 160;iPhone;14_7;Unc0ver;https://unc0ver.dev/;apple;XR - 11 Series;
 161;iPhone;14_7_1;Checkra1n;https://checkra.in/;apple;6s - X;A11 devices on iOS 14.0 and above require removing the passcode and enabling Skip A11 BPR check in the options. This is not recommended, but it's there.

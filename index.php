@@ -30,7 +30,7 @@
     <link href="css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/helper.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <!-- link href="css/style.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
@@ -47,12 +47,31 @@
 
         <?php 
             if ($deviceType=='computer' || $detect->version('Android')) { ?>
+            <div class="unix-login">
+                    <div class="container-fluid">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="card-body">
+                                            <h4 class="card-title"></h4>
+                                            <div class="card-content">
+                                                <center><h1>Can I Jailbreak?</h1></center>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-lg-12">
                     <div class="card-body">
                         <h4 class="card-title"></h4>
                         <div class="card-content">
-                            <div class="alert alert-danger">
-                                <center>You are not on an iOS or iPadOS device. Are you using iPadOS? <a href="https://t.me/idiphone/3574" target="_blank">Check this out</a></center>
+                            <div class="alert alert-warning" role="alert">
+                                <h4 class="alert-heading">Sorry,</h4>
+                                <p>You are not on an iOS or iPadOS device. Are you using iPadOS? <a href="https://t.me/idiphone/3574" target="_blank">Check this out</a></p>
                             </div>
                         </div>
                     </div>
@@ -109,10 +128,9 @@
                                                     <div class="card-body">
                                                         <h4 class="card-title"></h4>
                                                         <div class="card-content">
-                                                            <div class="alert alert-info">
-                                                                <center>
-                                                                    Good News! Yes, you can jailbreak your <?php echo $devicenya ?> on iOS <?php echo $iosversion ?>
-                                                                </center>
+                                                            <div class="alert alert-success" role="alert">
+                                                                <h4 class="alert-heading"> Good News!</h4>
+                                                                <p>Yes, you can jailbreak your <?php echo $devicenya ?> on iOS <?php echo $iosversion ?>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -176,10 +194,9 @@
                                         <div class="card-body">
                                             <h4 class="card-title"></h4>
                                             <div class="card-content">
-                                                <div class="alert alert-warning">
-                                                    <center>
-                                                        Sad News: You can't Jailbreak <?php echo $devicenya ?> on iOS <?php echo $iosversion ?>
-                                                    </center>
+                                                <div class="alert alert-danger" role="alert">
+                                                    <h4 class="alert-heading">Sad News!</h4>
+                                                    <p>NO Jailbreak for <?php echo $devicenya ?> on iOS <?php echo $iosversion ?></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -210,7 +227,11 @@
 
 </body>
 
-    <center><a href="https://docs.google.com/spreadsheets/d/11DABHIIqwYQKj1L83AK9ywk_hYMjEkcaxpIg6phbTf0/edit#gid=1014970938" style="color:blue;" >Complete Jailbreak Chart ></a></center>
+    <center><a href="https://docs.google.com/spreadsheets/d/1QjWyoDfaiF-TWhzVdvEMRqA3OQXsz6e8of3SxZB1W_M/edit?usp=sharing">Complete Jailbreak Chart ></a></center>
+    </br>
+    <center><a href="https://appledb.dev/device-selection/">Devices Selection ></a></center>
+    </br><a style="color:black;"><center>Looking for FutureRestore?</center>
+        <center><a href="https://docs.google.com/spreadsheets/d/1Mb1UNm6g3yvdQD67M413GYSaJ4uoNhLgpkc7YKi3LBs/edit?fbclid=IwAR10JCtGhCg2RfIVUnIAjOAt4aMLoz80pWEL8Kqs2zaLX2bislT3KUU0Hw8#gid=0">SEP/BB Compability Chart ></a></center>
 
 	<?php include 'footer.php';?>
 </html>
