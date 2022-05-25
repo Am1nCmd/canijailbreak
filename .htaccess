@@ -4,9 +4,6 @@ order allow,deny
 allow from all
 </Files>
 
-deny from 24.155.18.61
-deny from 216.128.130.67
-
 # php -- BEGIN cPanel-generated handler, do not edit
 # Set the “ea-php70” package as the default “PHP” programming language.
 <IfModule mime_module>
