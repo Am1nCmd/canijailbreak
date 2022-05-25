@@ -1,8 +1,7 @@
-
 <?php
     include 'config.php';
-    //$query = mysqli_query($connection, "truncate jb"); # hapus terlebih dahulu table jb 
-    //echo shell_exec("./run.sh"); # insert file.csv ke database menggunakan file.sh
+    $query = mysqli_query($connection, "truncate jb"); # hapus terlebih dahulu table jb 
+    echo shell_exec("./run.sh"); # insert file.csv ke database menggunakan file.sh
 ?>
 
 <?php
