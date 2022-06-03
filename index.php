@@ -1,128 +1,78 @@
+
 <?php
     include 'config.php';
-    $query = mysqli_query($connection, "truncate jb"); # hapus terlebih dahulu table jb 
-    echo shell_exec("./run.sh"); # insert file.csv ke database menggunakan file.sh
+    //$query = mysqli_query($connection, "truncate jb"); # hapus terlebih dahulu table jb 
+    //echo shell_exec("./run.sh"); # insert file.csv ke database menggunakan file.sh
 ?>
 
 <?php
 
-	require_once 'vendor/mobiledetect/mobiledetectlib/Mobile_Detect.php';
-	$detect = new Mobile_Detect;
+    require_once 'vendor-device/mobiledetect/mobiledetectlib/Mobile_Detect.php';
+    $detect = new Mobile_Detect;
 
-	$deviceType = ($detect->isMobile() ? ($detect->isTablet() ? 'tablet' : 'phone') : 'computer');
-	
+    $deviceType = ($detect->isMobile() ? ($detect->isTablet() ? 'tablet' : 'phone') : 'computer');
+    
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <style>
-    /* FOOTER */
-    footer .links {
-        font-size: 14px;
-        font-weight: 800;
-        white-space: nowrap;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    }
 
-    footer .section {
-        padding: 12px 0;
-        border-bottom: 1px solid #2f2f2f;
-        max-width: 800px;
-        margin: 0 auto;
-    }
-
-    footer .section:last-child {
-        border-bottom: none;
-    }
-
-    .section p {
-        color: black;
-        font-size: 22px;
-    }
-    </style>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
     <meta name="description" content="">
     <meta name="author" content="">
-    <!-- Favicon icon -->
-	<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+
+    <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <title>Future Jailbreak Wizard | AmS1gn</title>
+
     <!-- Bootstrap Core CSS -->
-    <link href="css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
     <!-- Custom CSS -->
-    <link href="css/helper.css" rel="stylesheet">
-    <!-- link href="css/style.css" rel="stylesheet"> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="vendor/morrisjs/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <script src="https://kit.fontawesome.com/fbe4824086.js" crossorigin="anonymous"></script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script src="//code.jquery.com/jquery-1.7.1.min.js"></script>
+
 </head>
 
-<body class="fix-header fix-sidebar">
-    <!-- Main wrapper  -->
-    <div id="main-wrapper">
+<body>
 
-        <?php 
+    <div id="wrapper">
+        <center>
+            <h1>Can I Jailbreak?</h1>
+        </center>
+        <?php
             if ($deviceType=='computer' || $detect->version('Android')) { ?>
-            <div class="unix-login">
-                    <div class="container-fluid">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-12">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="card-body">
-                                            <h4 class="card-title"></h4>
-                                            <div class="card-content">
-                                                <center><h1>Can I Jailbreak?</h1></center>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="col-lg-12">
-                    <div class="card-body">
-                        <h4 class="card-title"></h4>
-                        <div class="card-content">
-                            <div class="alert alert-warning" role="alert">
-                                <h4 class="alert-heading">Sorry :(</h4>
+                    <div class="panel-body">
+                        <div class="alert alert-danger">
+                            <center>
+                                <h4>Sorry :(</h4>
                                 <p>You are not on an iOS or iPadOS device. Are you using iPadOS? <a href="https://t.me/idiphone/3574" target="_blank">Check this out</a></p>
-                            </div>
+                            </center>
                         </div>
                     </div>
                 </div>
             <?php } else { ?>
-
-                <div class="unix-login">
-                    <div class="container-fluid">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-12">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="card-body">
-                                            <h4 class="card-title"></h4>
-                                            <div class="card-content">
-                                                <center><h1>Can I Jailbreak?</h1></center>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <?php 
 
                     if ($detect->isIphone()===true) {
@@ -137,120 +87,122 @@
                     #echo $devicenya .' '. $iosversion;
 
                 ?>
-
                 <?php 
                     include 'config.php';
                     $cek = mysqli_query($connection, "select * from jb where device='$devicenya' and ios='$iosversion'");
                 ?>
                 <?php 
                     if(mysqli_num_rows($cek)>=1) { ?>
-                        <div class="unix-login">
-                            <div class="container-fluid">
-                                <div class="row justify-content-center">
-                                    <div class="col-lg-12">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                
-                                                    <div class="card-body">
-                                                        <h4 class="card-title"></h4>
-                                                        <div class="card-content">
-                                                            <div class="alert alert-success" role="alert">
-                                                                <h4 class="alert-heading"> Good News! ^_^</h4>
-                                                                <p>Yes, you can jailbreak your <?php echo $devicenya ?> on iOS <?php echo $iosversion ?>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                
-                                            </div>
-                                        </div>
-                                        <div class="row">
-										<?php 
-											$tp = mysqli_query($connection, "select * from jb where device='$devicenya' and ios='$iosversion'");
-											$hitung = mysqli_num_rows($tp);
-										?>
-                                            <div class="col-md-6">
-                                                <h4>Available Jailbreaks (<?php echo $hitung;?>) : </h4>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <?php 
-                                                while ($data=mysqli_fetch_array($tp)) {
-                                            ?>
-                                            <div class="col-md-6">
-                                                <div class="card p-30">
-                                                    <div class="media">
-                                                        <table style="width:100%">
-                                                            <tr align="center">
-                                                                <td colspan="2">
-                                                                        <h2 align="center"><?php echo $data['tool_jb'] ?></h2>
-                                                                        <a href="<?php echo $data['link'] ?>" target="_blank"><p align="center" class="m-b-0">Visit Website</p></a>
-                                                                </td>
-                                                                
-                                                            </tr>
-                                                            <tr>
-                                                                <td colspan="2">
-                                                                    <hr>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td colspan="2">
-                                                                    <h2 align="center"><img src="images/iphones.svg" width="30" height="30"> <?php echo $data['supdev'] ?></i></h2>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td colspan="2">
-                                                                    <p align="center"><?php echo $data['note'] ?></p>
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <?php } ?>
-                                        </div>
-                                    </div>
-                                </div>
+                    <div class="col-lg-12">
+                        <div class="panel-body">
+                            <div class="alert alert-success">
+                                <center>
+                                    <h4 class="alert-heading"> Good News! ^_^</h4>
+                                    <p>Yes, you can jailbreak your <?php echo $devicenya ?> on iOS <?php echo $iosversion ?>
+                                </center>
                             </div>
                         </div>
-                    <?php } else { ?>
-                        <div class="unix-login">
-                            <div class="container-fluid">
-                                <div class="row justify-content-center">
-                                    <div class="col-lg-12">
-                                        <div class="card-body">
-                                            <h4 class="card-title"></h4>
-                                            <div class="card-content">
-                                                <div class="alert alert-danger" role="alert">
-                                                    <h4 class="alert-heading">Sadly :'(</h4>
-                                                    <p>NO Jailbreak for <?php echo $devicenya ?> on iOS <?php echo $iosversion ?></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                    </div>
+                    <?php 
+                        $tp = mysqli_query($connection, "select * from jb where device='$devicenya' and ios='$iosversion'");
+                        $hitung = mysqli_num_rows($tp);
+                    ?>
+                    <div class="col-md-12">
+                        <h4>Available Jailbreaks (<?php echo $hitung;?>) : </h4>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="panel panel-default">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr align="center" style="font-weight: bold;">
+                                            <td>iOS</td>
+                                            <td>Jailbreak</td>
+                                            <td>Support Device</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php 
+                                            while ($data=mysqli_fetch_array($tp)) { 
+                                        ?>
+                                        <tr align="center">
+                                            <td><?php echo $data['ios'] ?></td>
+                                            <td>
+                                                <a href="<?php echo $data['link'] ?>">
+                                                    <?php echo $data['tool_jb'] ?> <i class="fa fa-external-link"></i>
+                                                </a>
+                                            </td>
+                                            <td><?php echo $data['supdev'] ?></td>
+                                        </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
                             </div>
+                            <!-- /.table-responsive -->
                         </div>
-                    <?php }
-                ?>
+                        <!-- /.panel -->
+                    </div>
+                    <?php 
+                        $hnote = mysqli_fetch_array(mysqli_query($connection, "select count(id) as total from jb where device='$devicenya' and ios='$iosversion' AND LENGTH(note) > 10 "));
+                        if ($hnote['total']!=0) { ?>
+                            <div class="col-lg-4">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        Notes
+                                    </div>
+                                    <div class="panel-body">
+                                        <?php
+                                            $tp2 = mysqli_query($connection, "select * from jb where device='$devicenya' and ios='$iosversion' AND LENGTH(note) > 10");
+                                            while ($data2=mysqli_fetch_array($tp2)) { 
+                                        ?>
+                                        <h4><?php echo $data2['tool_jb'] ?></h4>
+                                        <ul>
+                                            <li><?php echo $data2['note'] ?></li>
+                                        </ul>
+                                        <?php } ?>
+                                    </div>
+                                    <!-- /.panel-body -->
+                                </div>
+                                <!-- /.panel -->
+                            </div>
+                        <?php } else { ?>
 
-            <?php }
-        ?>
+                        <?php }
+                    ?>
+                <?php } else { ?>
+                    <div class="col-lg-12">
+                        <div class="panel-body">
+                            <div class="alert alert-danger">
+                                <center>
+                                    <h4 class="alert-heading">Sadly :'(</h4>
+                                    <p>NO Jailbreak for <?php echo $devicenya ?> on iOS <?php echo $iosversion ?></p>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+            <?php } ?>
     </div>
-    <!-- End Wrapper -->
-    <!-- All Jquery -->
-    <script src="js/lib/jquery/jquery.min.js"></script>
-    <!-- Bootstrap tether Core JavaScript -->
-    <script src="js/lib/bootstrap/js/popper.min.js"></script>
-    <script src="js/lib/bootstrap/js/bootstrap.min.js"></script>
-    <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="js/jquery.slimscroll.js"></script>
-    <!--Menu sidebar -->
-    <script src="js/sidebarmenu.js"></script>
-    <!--stickey kit -->
-    <script src="js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
-    <!--Custom JavaScript -->
-    <script src="js/custom.min.js"></script>
+    <?php include 'footer.php'; ?>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <!-- <script src="vendor/raphael/raphael.min.js"></script>
+    <script src="vendor/morrisjs/morris.min.js"></script>
+    <script src="data/morris-data.js"></script> -->
+
+    <!-- Custom Theme JavaScript -->
+    <script src="dist/js/sb-admin-2.js"></script>
 
 </body>
-	<?php include 'footer.php';?>
+
 </html>
