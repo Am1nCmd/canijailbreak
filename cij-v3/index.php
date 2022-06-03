@@ -1,7 +1,8 @@
+
 <?php
     include 'config.php';
-    $query = mysqli_query($connection, "truncate jb"); # hapus terlebih dahulu table jb 
-    echo shell_exec("./run.sh"); # insert file.csv ke database menggunakan file.sh
+    //$query = mysqli_query($connection, "truncate jb"); # hapus terlebih dahulu table jb 
+    //echo shell_exec("./run.sh"); # insert file.csv ke database menggunakan file.sh
 ?>
 
 <?php
@@ -109,43 +110,65 @@
                     <div class="col-md-12">
                         <h4>Available Jailbreaks (<?php echo $hitung;?>) : </h4>
                     </div>
-                    <?php 
-                        while ($data=mysqli_fetch_array($tp)) { 
-                    ?>
-                    <div class="col-lg-4">
-                        <div class="panel panel-success">
-                            <div class="panel-heading">
-                                <b>
-                                    <i class="fa fa-apple"></i>
-                                    <?php echo $data['tool_jb'] ?>
-                                </b>
+                    <div class="col-lg-6">
+                        <div class="panel panel-default">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr align="center" style="font-weight: bold;">
+                                            <td>iOS</td>
+                                            <td>Jailbreak</td>
+                                            <td>Support Device</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php 
+                                            while ($data=mysqli_fetch_array($tp)) { 
+                                        ?>
+                                        <tr align="center">
+                                            <td><?php echo $data['ios'] ?></td>
+                                            <td>
+                                                <a href="<?php echo $data['link'] ?>">
+                                                    <?php echo $data['tool_jb'] ?> <i class="fa fa-external-link"></i>
+                                                </a>
+                                            </td>
+                                            <td><?php echo $data['supdev'] ?></td>
+                                        </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="panel-body">
-                                <?php
-                                    if ($data['supdev']==='') { ?>
-                                        <!-- <p>kosong</p> -->
-                                    <?php } else { ?>
-                                        <p><img src="images/laptop-mobile.svg" width="30" height="30"> <?php echo $data['supdev'] ?></i></p>
-                                    <?php }
-                                ?>
-                                <?php
-                                    if ($data['note']==='') { ?>
-                                        <!-- <p>kosong</p> -->
-                                    <?php } else { ?>
-                                        <p><?php echo $data['note'] ?></p>
-                                    <?php }
-                                ?>
-                            </div>
-                            <a href="<?php echo $data['link'] ?>" target="_blank">
-                                <div class="panel-footer">
-                                    <span class="pull-left">Visit Website</span>
-                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </a>
+                            <!-- /.table-responsive -->
                         </div>
+                        <!-- /.panel -->
                     </div>
-                    <?php } ?>
+                    <?php 
+                        $hnote = mysqli_fetch_array(mysqli_query($connection, "select count(id) as total from jb where device='$devicenya' and ios='$iosversion' AND LENGTH(note) > 10 "));
+                        if ($hnote['total']!=0) { ?>
+                            <div class="col-lg-4">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        Notes
+                                    </div>
+                                    <div class="panel-body">
+                                        <?php
+                                            $tp2 = mysqli_query($connection, "select * from jb where device='$devicenya' and ios='$iosversion' AND LENGTH(note) > 10");
+                                            while ($data2=mysqli_fetch_array($tp2)) { 
+                                        ?>
+                                        <h4><?php echo $data2['tool_jb'] ?></h4>
+                                        <ul>
+                                            <li><?php echo $data2['note'] ?></li>
+                                        </ul>
+                                        <?php } ?>
+                                    </div>
+                                    <!-- /.panel-body -->
+                                </div>
+                                <!-- /.panel -->
+                            </div>
+                        <?php } else { ?>
+
+                        <?php }
+                    ?>
                 <?php } else { ?>
                     <div class="col-lg-12">
                         <div class="panel-body">
@@ -173,9 +196,9 @@
     <script src="vendor/metisMenu/metisMenu.min.js"></script>
 
     <!-- Morris Charts JavaScript -->
-    <script src="vendor/raphael/raphael.min.js"></script>
+    <!-- <script src="vendor/raphael/raphael.min.js"></script>
     <script src="vendor/morrisjs/morris.min.js"></script>
-    <script src="data/morris-data.js"></script>
+    <script src="data/morris-data.js"></script> -->
 
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/sb-admin-2.js"></script>
