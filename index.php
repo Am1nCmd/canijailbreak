@@ -129,7 +129,7 @@
                                             <td><?php echo $data['ios'] ?></td>
                                             <td>
                                                 <a href="<?php echo $data['link'] ?>">
-                                                    <?php echo $data['tool_jb'] ?> <i class="fa fa-external-link"></i>
+                                                    <?php echo $data['tool_jb'] ?> 
                                                 </a>
                                             </td>
                                             <td><?php echo $data['supdev'] ?></td>
