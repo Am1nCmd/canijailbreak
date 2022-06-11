@@ -26,7 +26,13 @@
     <meta name="author" content="">
 
     <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon">
-    <title>Future Jailbreak Wizard | AmS1gn</title>
+    <title>Can I Jailbreak | AmS1gn</title>
+    <meta property="og:image" content="https://i.postimg.cc/vmdYtxMv/Can-IJailbreak.png" />
+    <!--At the minimum, you should use images that are 600 x 315 pixels to display link page posts with larger images. Images can be up to 8MB in size.-->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://canijailbreak.ams1gn.id"/>
+    <meta property="og:title" content="Can I Jailbreak | AmS1gn" />
+    <meta property="og:description" content="The most up-to-date website detects your iOS device whether you can jailbreak it or not."/>
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
