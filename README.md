@@ -1,19 +1,36 @@
-[![photo-2022-06-04-17-59-28.jpg](https://i.postimg.cc/G3vD4jYt/photo-2022-06-04-17-59-28.jpg)](https://postimg.cc/vDHTjf0w)
+# [Start Bootstrap](http://startbootstrap.com/) - [SB Admin 2](http://startbootstrap.com/template-overviews/sb-admin-2/)
+[![CDNJS](https://img.shields.io/cdnjs/v/startbootstrap-sb-admin-2.svg)](https://cdnjs.com/libraries/startbootstrap-sb-admin-2)
 
-# canijailbreak
-The most up-to-date website that detects your iOS device whether you can jailbreak it or not.
+[SB Admin 2](http://startbootstrap.com/template-overviews/sb-admin-2/) is an open source, admin dashboard template for [Bootstrap](http://getbootstrap.com/) created by [Start Bootstrap](http://startbootstrap.com/).
 
-canijailbreak.ams1gn.id is created by Am1nCmd and Nanda Gilang which hosted at ams1gn.id website.
-This website will help you to find the suitable jailbreak for your device and iOS just by visiting the website.
+## Getting Started
 
-# how it works?
-We detect your browser's user agent as input, then return it by displaying the availability of jailbreak tools based on the device and iOS used.
+To begin using this template, choose one of the following options to get started:
+* [Download the latest release on Start Bootstrap](http://startbootstrap.com/template-overviews/sb-admin-2/)
+* Clone the repo: `git clone https://github.com/BlackrockDigital/startbootstrap-sb-admin-2.git`
+* Fork the repo
 
-# help us to improve?
-edit file list-jb-tools.csv
+## Using the Source Files
 
-# credit
-- @am1ncmd
-- @nandagilang_id
-- AppleDB
-- r/jailbreak Community
+After cloning the repo take a look at the `gulpfile.js` and check out the tasks available:
+* `gulp` The default task will compile the LESS and JS into the `dist` directory and minify the output, and it will copy all vendor libraries from `bower_components` into the `vendor` directory
+* `gulp dev` The dev task will serve up a local version of the template and will watch the LESS, JS, and HTML files for changes and reload the browser windo automatically
+
+To update dependencies, run `bower update` and then run `gulp copy` to copy the updated dependencies into the `vendor` directory
+
+## Bugs and Issues
+
+Have a bug or an issue with this template? [Open a new issue](https://github.com/BlackrockDigital/startbootstrap-sb-admin-2/issues) here on GitHub or leave a comment on the [template overview page at Start Bootstrap](http://startbootstrap.com/template-overviews/sb-admin-2/).
+
+## Creator
+
+Start Bootstrap was created by and is maintained by **[David Miller](http://davidmiller.io/)**, Owner of [Blackrock Digital](http://blackrockdigital.io/).
+
+* https://twitter.com/davidmillerskt
+* https://github.com/davidtmiller
+
+Start Bootstrap is based on the [Bootstrap](http://getbootstrap.com/) framework created by [Mark Otto](https://twitter.com/mdo) and [Jacob Thorton](https://twitter.com/fat).
+
+## Copyright and License
+
+Copyright 2013-2018 Blackrock Digital LLC. Code released under the [MIT](https://github.com/BlackrockDigital/startbootstrap-sb-admin-2/blob/gh-pages/LICENSE) license.
