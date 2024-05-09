@@ -1,2 +1,2 @@
 #!/bin/bash
-mysql -u u184690682_canijailbreak -p'dufbez-seftif-qiVza1' u184690682_canijailbreak -e "LOAD DATA LOCAL INFILE '/home/u184690682/public_html/canijailbreak/list-jb-tools.csv' INTO TABLE jb FIELDS TERMINATED BY ';' IGNORE 1 ROWS"
+mysql -u mysql_user -p'mysql_password' database_name -e "LOAD DATA LOCAL INFILE '/home/users/public_html/canijailbreak/list-jb-tools.csv' INTO TABLE jb FIELDS TERMINATED BY ';' IGNORE 1 ROWS"
