@@ -1,0 +1,158 @@
+<!doctype html>
+<html>
+<head>
+    <title>Can I Jailbreak</title>
+    <!-- Tambahkan Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="ua-parser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var parser = new UAParser();
+            var result = parser.getResult();
+            var osName = result.os.name || 'Unknown';
+            var osVersion = result.os.version || 'Unknown';
+            var deviceModel = result.device.model || 'Unknown';
+
+            console.log("Detected OS Version:", osVersion);
+
+            if (deviceModel === 'Unknown' || (deviceModel !== 'iPhone' && deviceModel !== 'iPad')) {
+                document.getElementById('jailbreak-info').innerHTML = `
+                    <div class="card mt-3">
+                        <div class="card-body">
+                            <h5 class="card-title"><strong>Sorry :(</strong></h5>
+                            <p class="card-text">Your device is not supported.</p>
+                        </div>
+                    </div>
+                `;
+            } else if (osVersion.startsWith('17')) {
+                checkJailbreak(osVersion, 'chart/17.csv', deviceModel, osName);
+            } else if (osVersion.startsWith('16')) {
+                checkJailbreak(osVersion, 'chart/16.csv', deviceModel, osName);
+            } else if (osVersion.startsWith('15')) {
+                checkJailbreak(osVersion, 'chart/15.csv', deviceModel, osName);
+            } else if (osVersion.startsWith('14')) {
+                checkJailbreak(osVersion, 'chart/14.csv', deviceModel, osName);
+            } else if (osVersion.startsWith('13')) {
+                checkJailbreak(osVersion, 'chart/13.csv', deviceModel, osName);
+            } else if (osVersion.startsWith('12')) {
+                checkJailbreak(osVersion, 'chart/12.csv', deviceModel, osName);
+            } else {
+                document.getElementById('jailbreak-info').innerHTML = `
+                    <div class="card mt-3">
+                        <div class="card-body">
+                            <h5 class="card-title"><strong>Sadly :'(</strong></h5>
+                            <p class="card-text">No jailbreak available for ${deviceModel} with ${osName} ${osVersion}.</p>
+                        </div>
+                    </div>
+                `;
+            }
+        });
+
+        function checkJailbreak(osVersion, csvFile, deviceModel, osName) {
+            Papa.parse(csvFile, {
+                download: true,
+                header: true,
+                complete: function(results) {
+                    var data = results.data;
+                    var jailbreakInfo = [];
+
+                    for (var i = 0; i < data.length; i++) {
+                        var row = data[i];
+                        var osColumn = `iOS ${osVersion}`;
+                        if (row[osColumn] && row[osColumn] !== 'No JB') {
+                            jailbreakInfo.push({
+                                device: row.Device,
+                                chip: row.Chip,
+                                arch: row.Arch,
+                                status: row[osColumn]
+                            });
+                        }
+                    }
+
+                    if (jailbreakInfo.length > 0) {
+                        var jailbreakHtml = `
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Device</th>
+                                        <th>Chipset</th>
+                                        <th>Architecture</th>
+                                        <th>Jailbreak Tools</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                    `;
+                    jailbreakHtml += jailbreakInfo.map(info => {
+                        let tools = info.status.split(',').map(tool => {
+                            let toolLink;
+                            if (tool.trim() === 'Dopamine') {
+                                toolLink = '<a href="https://ellekit.space/dopamine/" target="_blank">Dopamine</a>';
+                            } else if (tool.trim() === 'checkra1n') {
+                                toolLink = '<a href="https://checkra.in/" target="_blank">checkra1n</a>';
+                            } else if (tool.trim() === 'palera1n') {
+                                toolLink = '<a href="https://palera.in/" target="_blank">palera1n</a>';
+                            } else if (tool.trim() === 'TrollStore') {
+                                toolLink = '<a href="https://ios.cfw.guide/installing-trollstore/" target="_blank">TrollStore</a>';
+                            } else if (tool.trim() === 'Taurine') {
+                                toolLink = '<a href="https://taurine.app/" target="_blank">Taurine</a>';
+                            } else if (tool.trim() === 'unc0ver') {
+                                toolLink = '<a href="https://unc0ver.dev/" target="_blank">unc0ver</a>';
+                            } else if (tool.trim() === 'Chimera') {
+                                toolLink = '<a href="https://chimera.coolstar.org/" target="_blank">Chimera</a>';
+                            } else if (tool.trim() === 'Fugu14') {
+                                toolLink = '<a href="https://github.com/LinusHenze/Fugu14" target="_blank">Fugu14</a>';
+                            } else {
+                                toolLink = tool.trim();
+                            }
+                            return toolLink;
+                        }).join(', ');
+
+                        return `
+                            <tr>
+                                <td>${info.device}</td>
+                                <td>${info.chip}</td>
+                                <td>${info.arch}</td>
+                                <td>${tools}</td>
+                            </tr>
+                        `;
+                    }).join('');
+                    jailbreakHtml += `
+                            </tbody>
+                        </table>
+                    `;
+                    document.getElementById('jailbreak-info').innerHTML = `
+                        <div class="card mt-3">
+                            <div class="card-body">
+                                <h5 class="card-title"><strong>Yes! :)</strong></h5>
+                                <p class="card-text">${deviceModel} with ${osName} ${osVersion} can be jailbroken.</p>
+                                ${jailbreakHtml}
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    document.getElementById('jailbreak-info').innerHTML = `
+                        <div class="card mt-3">
+                            <div class="card-body">
+                                <h5 class="card-title"><strong>Sadly :'(</strong></h5>
+                                <p class="card-text">No jailbreak available for ${deviceModel} with ${osName} ${osVersion}.</p>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+        });
+    }
+</script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center my-4">Can I Jailbreak?</h1>
+        <div id="jailbreak-info" class="text-center"></div>
+    </div>
+    <!-- Tambahkan Bootstrap JS dan dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+Device,Chip,Arch,iOS 17.0,iOS 17.0.1,iOS 17.0.2,iOS 17.0.3,iOS 17.1,iOS 17.1.1,iOS 17.1.2,iOS 17.2,iOS 17.2.1,iOS 17.3,iOS 17.3.1,iOS 17.4,iOS 17.4.1,iOS 17.5,iOS 17.5.1
+iPhone XR,A12,arm64e,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB
+iPhone XS,A12,arm64e,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB
+iPhone XS Max,A12,arm64e,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB
+iPhone SE (2nd Gen),A13,arm64e,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB
+iPhone 11,A13,arm64e,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB
+iPhone 11 Pro,A13,arm64e,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB
+iPhone 11 Pro Max,A13,arm64e,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB
+iPhone 12 mini,A14,arm64e,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB
+iPhone 12,A14,arm64e,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB
+iPhone 12 Pro,A14,arm64e,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB
+iPhone 12 Pro Max,A14,arm64e,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB
+iPhone SE (3rd Gen),A15,arm64e,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB
+iPhone 13 mini,A15,arm64e,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB
+iPhone 13,A15,arm64e,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB
+iPhone 13 Pro,A15,arm64e,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB
+iPhone 13 Pro Max ,A15,arm64e,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB
+iPhone 14,A15,arm64e,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB
+iPhone 14 Plus,A15,arm64e,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB
+iPhone 14 Pro,A16,arm64e,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB
+iPhone 14 Pro Max ,A16,arm64e,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB
+iPhone 15,A16,arm64e,,,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB
+iPhone 15 Plus,A16,arm64e,,,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB
+iPhone 15 Pro,A17 Pro,arm64e,,,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB
+iPhone 15 Pro Max ,A17 Pro,arm64e,,,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,No JB,Dopamine
