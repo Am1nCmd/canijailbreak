@@ -29,27 +29,32 @@
                         </div>
                     </div>
                 `;
-            } else if (osVersion.startsWith('17')) {
-                checkJailbreak(osVersion, 'chart/17.csv', deviceModel, osName);
-            } else if (osVersion.startsWith('16')) {
-                checkJailbreak(osVersion, 'chart/16.csv', deviceModel, osName);
-            } else if (osVersion.startsWith('15')) {
-                checkJailbreak(osVersion, 'chart/15.csv', deviceModel, osName);
-            } else if (osVersion.startsWith('14')) {
-                checkJailbreak(osVersion, 'chart/14.csv', deviceModel, osName);
-            } else if (osVersion.startsWith('13')) {
-                checkJailbreak(osVersion, 'chart/13.csv', deviceModel, osName);
-            } else if (osVersion.startsWith('12')) {
-                checkJailbreak(osVersion, 'chart/12.csv', deviceModel, osName);
             } else {
-                document.getElementById('jailbreak-info').innerHTML = `
-                    <div class="card mt-3">
-                        <div class="card-body">
-                            <h5 class="card-title"><strong>Sadly :'(</strong></h5>
-                            <p class="card-text">No jailbreak available for ${deviceModel} with ${osName} ${osVersion}.</p>
+                let csvFile;
+                if (osVersion.startsWith('17')) {
+                    csvFile = 'chart/17.csv';
+                } else if (osVersion.startsWith('16')) {
+                    csvFile = 'chart/16.csv';
+                } else if (osVersion.startsWith('15')) {
+                    csvFile = 'chart/15.csv';
+                } else if (osVersion.startsWith('14')) {
+                    csvFile = 'chart/14.csv';
+                } else if (osVersion.startsWith('13')) {
+                    csvFile = 'chart/13.csv';
+                } else if (osVersion.startsWith('12')) {
+                    csvFile = 'chart/12.csv';
+                } else {
+                    document.getElementById('jailbreak-info').innerHTML = `
+                        <div class="card mt-3">
+                            <div class="card-body">
+                                <h5 class="card-title"><strong>Sadly :'(</strong></h5>
+                                <p class="card-text">No jailbreak available for ${deviceModel} with ${osName} ${osVersion}.</p>
+                            </div>
                         </div>
-                    </div>
-                `;
+                    `;
+                    return;
+                }
+                checkJailbreak(osVersion, csvFile, deviceModel, osName);
             }
         });
 
@@ -84,67 +89,69 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                    `;
-                    jailbreakHtml += jailbreakInfo.map(info => {
-                        let tools = info.status.split(',').map(tool => {
-                            let toolLink;
-                            if (tool.trim() === 'Dopamine') {
-                                toolLink = '<a href="https://ellekit.space/dopamine/" target="_blank" class="btn btn-primary btn-sm btn-rounded">Dopamine</a>';
-                            } else if (tool.trim() === 'checkra1n') {
-                                toolLink = '<a href="https://checkra.in/" target="_blank" class="btn btn-primary btn-sm btn-rounded">checkra1n</a>';
-                            } else if (tool.trim() === 'palera1n') {
-                                toolLink = '<a href="https://palera.in/" target="_blank" class="btn btn-primary btn-sm btn-rounded">palera1n</a>';
-                            } else if (tool.trim() === 'TrollStore') {
-                                toolLink = '<a href="https://ios.cfw.guide/installing-trollstore/" target="_blank" class="btn btn-primary btn-sm btn-rounded">TrollStore</a>';
-                            } else if (tool.trim() === 'Taurine') {
-                                toolLink = '<a href="https://taurine.app/" target="_blank" class="btn btn-primary btn-sm btn-rounded">Taurine</a>';
-                            } else if (tool.trim() === 'unc0ver') {
-                                toolLink = '<a href="https://unc0ver.dev/" target="_blank" class="btn btn-primary btn-sm btn-rounded">unc0ver</a>';
-                            } else if (tool.trim() === 'Chimera') {
-                                toolLink = '<a href="https://chimera.coolstar.org/" target="_blank" class="btn btn-primary btn-sm btn-rounded">Chimera</a>';
-                            } else if (tool.trim() === 'Fugu14') {
-                                toolLink = '<a href="https://github.com/LinusHenze/Fugu14" target="_blank" class="btn btn-primary btn-sm btn-rounded">Fugu14</a>';
-                            } else {
-                                toolLink = `<span class="btn btn-secondary btn-sm btn-rounded">${tool.trim()}</span>`;
-                            }
-                            return toolLink;
-                        }).join(' ');
-
-                        return `
-                            <tr>
-                                <td>${info.device}</td>
-                                <td>${info.chip}</td>
-                                <td class="jailbreak-tools">${tools}</td>
-                            </tr>
                         `;
-                    }).join('');
-                    jailbreakHtml += `
-                            </tbody>
-                        </table>
-                    `;
-                    document.getElementById('jailbreak-info').innerHTML = `
-                        <div class="card mt-3">
-                            <div class="card-body">
-                                <h5 class="card-title"><strong>Yes! :)</strong></h5>
-                                <p class="card-text">${deviceModel} with ${osName} ${osVersion} can be jailbroken.</p>
-                                ${jailbreakHtml}
+                        jailbreakHtml += jailbreakInfo.map(info => {
+                            let tools = info.status.split(',').map(tool => {
+                                let toolLink;
+                                if (tool.trim() === 'Dopamine') {
+                                    toolLink = '<a href="https://ellekit.space/dopamine/" target="_blank" class="btn btn-primary btn-sm btn-rounded">Dopamine</a>';
+                                } else if (tool.trim() === 'checkra1n') {
+                                    toolLink = '<a href="https://checkra.in/" target="_blank" class="btn btn-primary btn-sm btn-rounded">checkra1n</a>';
+                                } else if (tool.trim() === 'palera1n') {
+                                    toolLink = '<a href="https://palera.in/" target="_blank" class="btn btn-primary btn-sm btn-rounded">palera1n</a>';
+                                } else if (tool.trim() === 'TrollStore') {
+                                    toolLink = '<a href="https://ios.cfw.guide/installing-trollstore/" target="_blank" class="btn btn-primary btn-sm btn-rounded">TrollStore</a>';
+                                } else if (tool.trim() === 'Taurine') {
+                                    toolLink = '<a href="https://taurine.app/" target="_blank" class="btn btn-primary btn-sm btn-rounded">Taurine</a>';
+                                } else if (tool.trim() === 'unc0ver') {
+                                    toolLink = '<a href="https://unc0ver.dev/" target="_blank" class="btn btn-primary btn-sm btn-rounded">unc0ver</a>';
+                                } else if (tool.trim() === 'Chimera') {
+                                    toolLink = '<a href="https://chimera.coolstar.org/" target="_blank" class="btn btn-primary btn-sm btn-rounded">Chimera</a>';
+                                } else if (tool.trim() === 'Fugu14') {
+                                    toolLink = '<a href="https://github.com/LinusHenze/Fugu14" target="_blank" class="btn btn-primary btn-sm btn-rounded">Fugu14</a>';
+                                } else if (tool.trim() === 'NekoJB') {
+                                    toolLink = '<a href="https://nekojb.com/" target="_blank" class="btn btn-primary btn-sm btn-rounded">NekoJB</a>';
+                                } else {
+                                    toolLink = `<span class="btn btn-secondary btn-sm btn-rounded">${tool.trim()}</span>`;
+                                }
+                                return toolLink;
+                            }).join(' ');
+
+                            return `
+                                <tr>
+                                    <td>${info.device}</td>
+                                    <td>${info.chip}</td>
+                                    <td class="jailbreak-tools">${tools}</td>
+                                </tr>
+                            `;
+                        }).join('');
+                        jailbreakHtml += `
+                                </tbody>
+                            </table>
+                        `;
+                        document.getElementById('jailbreak-info').innerHTML = `
+                            <div class="card mt-3">
+                                <div class="card-body">
+                                    <h5 class="card-title"><strong>Yes! :)</strong></h5>
+                                    <p class="card-text">${deviceModel} with ${osName} ${osVersion} can be jailbroken.</p>
+                                    ${jailbreakHtml}
+                                </div>
                             </div>
-                        </div>
-                    `;
-                } else {
-                    document.getElementById('jailbreak-info').innerHTML = `
-                        <div class="card mt-3">
-                            <div class="card-body">
-                                <h5 class="card-title"><strong>Sadly :'(</strong></h5>
-                                <p class="card-text">No jailbreak available for ${deviceModel} with ${osName} ${osVersion}.</p>
+                        `;
+                    } else {
+                        document.getElementById('jailbreak-info').innerHTML = `
+                            <div class="card mt-3">
+                                <div class="card-body">
+                                    <h5 class="card-title"><strong>Sadly :'(</strong></h5>
+                                    <p class="card-text">No jailbreak available for ${deviceModel} with ${osName} ${osVersion}.</p>
+                                </div>
                             </div>
-                        </div>
-                    `;
+                        `;
+                    }
                 }
-            }
-        });
-    }
-</script>
+            });
+        }
+    </script>
 </head>
 <body>
     <div class="container">
