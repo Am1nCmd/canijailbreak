@@ -1,2 +1,0 @@
-#!/bin/bash
-mysql -u mysql_user -p'mysql_password' database_name -e "LOAD DATA LOCAL INFILE '/home/users/public_html/canijailbreak/list-jb-tools.csv' INTO TABLE jb FIELDS TERMINATED BY ';' IGNORE 1 ROWS"
