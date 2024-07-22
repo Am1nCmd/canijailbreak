@@ -64,7 +64,7 @@
                     for (var i = 0; i < data.length; i++) {
                         var row = data[i];
                         var osColumn = `iOS ${osVersion}`;
-                        if (row[osColumn] && row[osColumn] !== 'No JB') {
+                        if (row[osColumn] && row[osColumn] !== 'No JB' && row[osColumn] !== 'N/A') {
                             jailbreakInfo.push({
                                 device: row.Device,
                                 chip: row.Chip,
