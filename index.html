@@ -68,7 +68,6 @@
                             jailbreakInfo.push({
                                 device: row.Device,
                                 chip: row.Chip,
-                                arch: row.Arch,
                                 status: row[osColumn]
                             });
                         }
@@ -81,7 +80,6 @@
                                     <tr>
                                         <th>Device</th>
                                         <th>Chipset</th>
-                                        <th>Architecture</th>
                                         <th>Jailbreak Tools</th>
                                     </tr>
                                 </thead>
@@ -116,7 +114,6 @@
                             <tr>
                                 <td>${info.device}</td>
                                 <td>${info.chip}</td>
-                                <td>${info.arch}</td>
                                 <td class="jailbreak-tools">${tools}</td>
                             </tr>
                         `;
