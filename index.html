@@ -22,11 +22,9 @@
 
             if (deviceModel === 'Unknown' || (deviceModel !== 'iPhone' && deviceModel !== 'iPad')) {
                 document.getElementById('jailbreak-info').innerHTML = `
-                    <div class="card mt-3">
-                        <div class="card-body">
-                            <h5 class="card-title"><strong>Sorry :(</strong></h5>
-                            <p class="card-text">Your device is not supported.</p>
-                        </div>
+                    <div class="mt-3">
+                        <h5><strong>Sorry :(</strong></h5>
+                        <p>Your device is not supported.</p>
                     </div>
                 `;
             } else {
@@ -45,11 +43,9 @@
                     csvFile = 'chart/12.csv';
                 } else {
                     document.getElementById('jailbreak-info').innerHTML = `
-                        <div class="card mt-3">
-                            <div class="card-body">
-                                <h5 class="card-title"><strong>Sadly :'(</strong></h5>
-                                <p class="card-text">No jailbreak available for ${deviceModel} with ${osName} ${osVersion}.</p>
-                            </div>
+                        <div class="mt-3">
+                            <h5><strong>Sadly :'(</strong></h5>
+                            <p>No jailbreak available for ${deviceModel} with ${osName} ${osVersion}.</p>
                         </div>
                     `;
                     return;
@@ -80,15 +76,18 @@
 
                     if (jailbreakInfo.length > 0) {
                         var jailbreakHtml = `
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Device</th>
-                                        <th>Chipset</th>
-                                        <th>Jailbreak Tools</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                            <section>
+                                <div class="card" style="background-color: #1a1a1a; color: #ffffff;">
+                                    <div class="card-body">
+                                        <table class="table table-striped" style="background-color: transparent;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Device</th>
+                                                    <th>Chipset</th>
+                                                    <th>Jailbreak Tools</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
                         `;
                         jailbreakHtml += jailbreakInfo.map(info => {
                             let tools = info.status.split(',').map(tool => {
@@ -118,7 +117,7 @@
                             }).join(' ');
 
                             return `
-                                <tr>
+                                <tr style="background-color: transparent;">
                                     <td>${info.device}</td>
                                     <td>${info.chip}</td>
                                     <td class="jailbreak-tools">${tools}</td>
@@ -126,25 +125,24 @@
                             `;
                         }).join('');
                         jailbreakHtml += `
-                                </tbody>
-                            </table>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </section>
                         `;
                         document.getElementById('jailbreak-info').innerHTML = `
-                            <div class="card mt-3">
-                                <div class="card-body">
-                                    <h5 class="card-title"><strong>Yes! :)</strong></h5>
-                                    <p class="card-text">${deviceModel} with ${osName} ${osVersion} can be jailbroken.</p>
-                                    ${jailbreakHtml}
-                                </div>
+                            <div class="mt-3">
+                                <h5><strong>Yes! :)</strong></h5>
+                                <p>${deviceModel} with ${osName} ${osVersion} can be jailbroken.</p>
+                                ${jailbreakHtml}
                             </div>
                         `;
                     } else {
                         document.getElementById('jailbreak-info').innerHTML = `
-                            <div class="card mt-3">
-                                <div class="card-body">
-                                    <h5 class="card-title"><strong>Sadly :'(</strong></h5>
-                                    <p class="card-text">No jailbreak available for ${deviceModel} with ${osName} ${osVersion}.</p>
-                                </div>
+                            <div class="mt-3">
+                                <h5><strong>Sadly :'(</strong></h5>
+                                <p>No jailbreak available for ${deviceModel} with ${osName} ${osVersion}.</p>
                             </div>
                         `;
                     }
@@ -168,7 +166,7 @@
             .container {
                 padding: 0 15px;
             }
-            .card {
+            .mt-3 {
                 margin: 10px 0;
             }
         }
@@ -189,6 +187,20 @@
                 flex-direction: column;
                 align-items: center;
             }
+        }
+
+        /* Tambahkan CSS untuk memberikan tampilan card pada section */
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            padding: 16px;
+            margin: 10px 0;
+            background-color: #1a1a1a; /* Dark background */
+            color: #ffffff; /* White text */
+        }
+
+        /* Ubah warna h5 menjadi biru */
+        h5 {
+            color: #007bff;
         }
     </style>
 </body>
