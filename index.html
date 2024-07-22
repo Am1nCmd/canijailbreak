@@ -1,9 +1,13 @@
 <!doctype html>
-<html>
+<html data-bs-theme="dark">
 <head>
     <title>Can I Jailbreak</title>
     <!-- Tambahkan Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Tambahkan custom CSS -->
+    <link href="css/custom.css" rel="stylesheet">
+    <!-- Tambahkan tag viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="ua-parser.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
     <script>
@@ -87,33 +91,33 @@
                         let tools = info.status.split(',').map(tool => {
                             let toolLink;
                             if (tool.trim() === 'Dopamine') {
-                                toolLink = '<a href="https://ellekit.space/dopamine/" target="_blank">Dopamine</a>';
+                                toolLink = '<a href="https://ellekit.space/dopamine/" target="_blank" class="btn btn-primary btn-sm btn-rounded">Dopamine</a>';
                             } else if (tool.trim() === 'checkra1n') {
-                                toolLink = '<a href="https://checkra.in/" target="_blank">checkra1n</a>';
+                                toolLink = '<a href="https://checkra.in/" target="_blank" class="btn btn-primary btn-sm btn-rounded">checkra1n</a>';
                             } else if (tool.trim() === 'palera1n') {
-                                toolLink = '<a href="https://palera.in/" target="_blank">palera1n</a>';
+                                toolLink = '<a href="https://palera.in/" target="_blank" class="btn btn-primary btn-sm btn-rounded">palera1n</a>';
                             } else if (tool.trim() === 'TrollStore') {
-                                toolLink = '<a href="https://ios.cfw.guide/installing-trollstore/" target="_blank">TrollStore</a>';
+                                toolLink = '<a href="https://ios.cfw.guide/installing-trollstore/" target="_blank" class="btn btn-primary btn-sm btn-rounded">TrollStore</a>';
                             } else if (tool.trim() === 'Taurine') {
-                                toolLink = '<a href="https://taurine.app/" target="_blank">Taurine</a>';
+                                toolLink = '<a href="https://taurine.app/" target="_blank" class="btn btn-primary btn-sm btn-rounded">Taurine</a>';
                             } else if (tool.trim() === 'unc0ver') {
-                                toolLink = '<a href="https://unc0ver.dev/" target="_blank">unc0ver</a>';
+                                toolLink = '<a href="https://unc0ver.dev/" target="_blank" class="btn btn-primary btn-sm btn-rounded">unc0ver</a>';
                             } else if (tool.trim() === 'Chimera') {
-                                toolLink = '<a href="https://chimera.coolstar.org/" target="_blank">Chimera</a>';
+                                toolLink = '<a href="https://chimera.coolstar.org/" target="_blank" class="btn btn-primary btn-sm btn-rounded">Chimera</a>';
                             } else if (tool.trim() === 'Fugu14') {
-                                toolLink = '<a href="https://github.com/LinusHenze/Fugu14" target="_blank">Fugu14</a>';
+                                toolLink = '<a href="https://github.com/LinusHenze/Fugu14" target="_blank" class="btn btn-primary btn-sm btn-rounded">Fugu14</a>';
                             } else {
-                                toolLink = tool.trim();
+                                toolLink = `<span class="btn btn-secondary btn-sm btn-rounded">${tool.trim()}</span>`;
                             }
                             return toolLink;
-                        }).join(', ');
+                        }).join(' ');
 
                         return `
                             <tr>
                                 <td>${info.device}</td>
                                 <td>${info.chip}</td>
                                 <td>${info.arch}</td>
-                                <td>${tools}</td>
+                                <td class="jailbreak-tools">${tools}</td>
                             </tr>
                         `;
                     }).join('');
@@ -154,5 +158,34 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Tambahkan CSS untuk media queries -->
+    <style>
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            .card {
+                margin: 10px 0;
+            }
+        }
+        /* Tambahkan CSS untuk meratakan teks ke kiri dalam tabel */
+        table td {
+            text-align: left;
+        }
+        /* Tambahkan CSS untuk mengatur ulang tata letak tombol menggunakan Flexbox */
+        .jailbreak-tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        /* Media query untuk perangkat dengan lebar layar maksimal 768px */
+        @media (max-width: 768px) {
+            .jailbreak-tools {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
 </body>
 </html>

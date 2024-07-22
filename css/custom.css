@@ -1,0 +1,58 @@
+/* custom.css */
+
+/* Mengatur warna latar belakang halaman */
+body {
+    background-color: #000000;
+    color: #ffffff; /* Mengatur warna teks agar terlihat di latar belakang gelap */
+}
+
+/* Membuat button menjadi rounded */
+.btn-rounded {
+    border-radius: 50px;
+}
+
+/* Contoh: Mengubah warna latar belakang card */
+.card {
+    background-color: #1a1a1a;
+}
+
+/* Contoh: Mengubah warna teks judul card */
+.card-title {
+    color: #007bff;
+}
+
+/* Contoh: Mengubah warna teks paragraf card */
+.card-text {
+    color: #ffffff;
+}
+
+/* Mengatur warna teks dalam tabel menjadi putih */
+.table th, .table td {
+    color: #ffffff;
+    text-align: left; /* Membuat teks dalam tabel diratakan ke kiri */
+}
+
+/* Mengatur warna teks menjadi putih untuk elemen dengan kelas text-white */
+.text-white {
+    color: #ffffff !important;
+}
+
+/* Tambahkan CSS untuk meratakan teks ke kiri dalam tabel */
+table td {
+    text-align: left;
+}
+
+/* Tambahkan CSS untuk mengatur ulang tata letak tombol menggunakan Flexbox */
+.jailbreak-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Media query untuk perangkat dengan lebar layar maksimal 768px */
+@media (max-width: 768px) {
+    .jailbreak-tools {
+        flex-direction: column;
+        align-items: center;
+    }
+}
