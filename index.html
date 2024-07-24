@@ -1,81 +1,91 @@
-<!doctype html>
-<html data-bs-theme="dark">
-<head>
+<!DOCTYPE html>
+<html lang="en" xml:lang="en" data-bs-theme="dark">
+  <head>
     <title>Can I Jailbreak</title>
     <!-- Tambahkan Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <!-- Tambahkan custom CSS -->
-    <link href="css/custom.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet" />
     <!-- Tambahkan tag viewport -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta content="text/html; charset=utf-8" />
     <script src="ua-parser.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var parser = new UAParser();
-            var result = parser.getResult();
-            var osName = result.os.name || 'Unknown';
-            var osVersion = result.os.version || 'Unknown';
-            var deviceModel = result.device.model || 'Unknown';
+      document.addEventListener("DOMContentLoaded", function () {
+        var parser = new UAParser();
+        var result = parser.getResult();
+        var osName = result.os.name || "Unknown";
+        var osVersion = result.os.version || "Unknown";
+        var deviceModel = result.device.model || "Unknown";
 
-            console.log("Detected OS Version:", osVersion);
+        console.log("Detected OS Version:", osVersion);
 
-            if (deviceModel === 'Unknown' || (deviceModel !== 'iPhone' && deviceModel !== 'iPad')) {
-                document.getElementById('jailbreak-info').innerHTML = `
+        if (
+          deviceModel === "Unknown" ||
+          (deviceModel !== "iPhone" && deviceModel !== "iPad")
+        ) {
+          document.getElementById("jailbreak-info").innerHTML = `
                     <div class="mt-3">
                         <h5><strong>Sorry :(</strong></h5>
                         <p>Your device is not supported.</p>
                     </div>
                 `;
-            } else {
-                let csvFile;
-                if (osVersion.startsWith('17')) {
-                    csvFile = 'chart/17.csv';
-                } else if (osVersion.startsWith('16')) {
-                    csvFile = 'chart/16.csv';
-                } else if (osVersion.startsWith('15')) {
-                    csvFile = 'chart/15.csv';
-                } else if (osVersion.startsWith('14')) {
-                    csvFile = 'chart/14.csv';
-                } else if (osVersion.startsWith('13')) {
-                    csvFile = 'chart/13.csv';
-                } else if (osVersion.startsWith('12')) {
-                    csvFile = 'chart/12.csv';
-                } else {
-                    document.getElementById('jailbreak-info').innerHTML = `
+        } else {
+          let csvFile;
+          if (osVersion.startsWith("17")) {
+            csvFile = "chart/17.csv";
+          } else if (osVersion.startsWith("16")) {
+            csvFile = "chart/16.csv";
+          } else if (osVersion.startsWith("15")) {
+            csvFile = "chart/15.csv";
+          } else if (osVersion.startsWith("14")) {
+            csvFile = "chart/14.csv";
+          } else if (osVersion.startsWith("13")) {
+            csvFile = "chart/13.csv";
+          } else if (osVersion.startsWith("12")) {
+            csvFile = "chart/12.csv";
+          } else {
+            document.getElementById("jailbreak-info").innerHTML = `
                         <div class="mt-3">
                             <h5><strong>Sadly :'(</strong></h5>
                             <p>No jailbreak available for ${deviceModel} with ${osName} ${osVersion}.</p>
                         </div>
                     `;
-                    return;
-                }
-                checkJailbreak(osVersion, csvFile, deviceModel, osName);
+            return;
+          }
+          checkJailbreak(osVersion, csvFile, deviceModel, osName);
+        }
+      });
+
+      function checkJailbreak(osVersion, csvFile, deviceModel, osName) {
+        Papa.parse(csvFile, {
+          download: true,
+          header: true,
+          complete: function (results) {
+            var data = results.data;
+            var jailbreakInfo = [];
+
+            for (const element of data) {
+              var row = element;
+              var osColumn = `iOS ${osVersion}`;
+              if (
+                row[osColumn] &&
+                row[osColumn] !== "No JB" &&
+                row[osColumn] !== "N/A"
+              ) {
+                jailbreakInfo.push({
+                  device: row.Device,
+                  status: row[osColumn],
+                });
+              }
             }
-        });
 
-        function checkJailbreak(osVersion, csvFile, deviceModel, osName) {
-            Papa.parse(csvFile, {
-                download: true,
-                header: true,
-                complete: function(results) {
-                    var data = results.data;
-                    var jailbreakInfo = [];
-
-                    for (var i = 0; i < data.length; i++) {
-                        var row = data[i];
-                        var osColumn = `iOS ${osVersion}`;
-                        if (row[osColumn] && row[osColumn] !== 'No JB' && row[osColumn] !== 'N/A') {
-                            jailbreakInfo.push({
-                                device: row.Device,
-                                chip: row.Chip,
-                                status: row[osColumn]
-                            });
-                        }
-                    }
-
-                    if (jailbreakInfo.length > 0) {
-                        var jailbreakHtml = `
+            if (jailbreakInfo.length > 0) {
+              var jailbreakHtml = `
                             <section>
                                 <div class="card" style="background-color: #1a1a1a; color: #ffffff;">
                                     <div class="card-body">
@@ -83,78 +93,90 @@
                                             <thead>
                                                 <tr>
                                                     <th>Device</th>
-                                                    <th>Chipset</th>
                                                     <th>Jailbreak Tools</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                         `;
-                        jailbreakHtml += jailbreakInfo.map(info => {
-                            let tools = info.status.split(',').map(tool => {
-                                let toolLink;
-                                if (tool.trim() === 'Dopamine') {
-                                    toolLink = '<a href="https://ellekit.space/dopamine/" target="_blank" class="btn btn-primary btn-sm btn-rounded">Dopamine</a>';
-                                } else if (tool.trim() === 'checkra1n') {
-                                    toolLink = '<a href="https://checkra.in/" target="_blank" class="btn btn-primary btn-sm btn-rounded">checkra1n</a>';
-                                } else if (tool.trim() === 'palera1n') {
-                                    toolLink = '<a href="https://palera.in/" target="_blank" class="btn btn-primary btn-sm btn-rounded">palera1n</a>';
-                                } else if (tool.trim() === 'TrollStore') {
-                                    toolLink = '<a href="https://ios.cfw.guide/installing-trollstore/" target="_blank" class="btn btn-primary btn-sm btn-rounded">TrollStore</a>';
-                                } else if (tool.trim() === 'Taurine') {
-                                    toolLink = '<a href="https://taurine.app/" target="_blank" class="btn btn-primary btn-sm btn-rounded">Taurine</a>';
-                                } else if (tool.trim() === 'unc0ver') {
-                                    toolLink = '<a href="https://unc0ver.dev/" target="_blank" class="btn btn-primary btn-sm btn-rounded">unc0ver</a>';
-                                } else if (tool.trim() === 'Chimera') {
-                                    toolLink = '<a href="https://chimera.coolstar.org/" target="_blank" class="btn btn-primary btn-sm btn-rounded">Chimera</a>';
-                                } else if (tool.trim() === 'Fugu14') {
-                                    toolLink = '<a href="https://github.com/LinusHenze/Fugu14" target="_blank" class="btn btn-primary btn-sm btn-rounded">Fugu14</a>';
-                                } else if (tool.trim() === 'NekoJB') {
-                                    toolLink = '<a href="https://nekojb.com/" target="_blank" class="btn btn-primary btn-sm btn-rounded">NekoJB</a>';
-                                } else {
-                                    toolLink = `<span class="btn btn-secondary btn-sm btn-rounded">${tool.trim()}</span>`;
-                                }
-                                return toolLink;
-                            }).join(' ');
+              jailbreakHtml += jailbreakInfo
+                .map((info) => {
+                  let tools = info.status
+                    .split(",")
+                    .map((tool) => {
+                      let toolLink;
+                      if (tool.trim() === "Dopamine") {
+                        toolLink =
+                          '<a href="https://ellekit.space/dopamine/" target="_blank" class="btn btn-primary btn-sm btn-rounded">Dopamine</a>';
+                      } else if (tool.trim() === "checkra1n") {
+                        toolLink =
+                          '<a href="https://checkra.in/" target="_blank" class="btn btn-primary btn-sm btn-rounded">checkra1n</a>';
+                      } else if (tool.trim() === "palera1n") {
+                        toolLink =
+                          '<a href="https://palera.in/" target="_blank" class="btn btn-primary btn-sm btn-rounded">palera1n</a>';
+                      } else if (tool.trim() === "TrollStore") {
+                        toolLink =
+                          '<a href="https://ios.cfw.guide/installing-trollstore/" target="_blank" class="btn btn-primary btn-sm btn-rounded">TrollStore</a>';
+                      } else if (tool.trim() === "Taurine") {
+                        toolLink =
+                          '<a href="https://taurine.app/" target="_blank" class="btn btn-primary btn-sm btn-rounded">Taurine</a>';
+                      } else if (tool.trim() === "unc0ver") {
+                        toolLink =
+                          '<a href="https://unc0ver.dev/" target="_blank" class="btn btn-primary btn-sm btn-rounded">unc0ver</a>';
+                      } else if (tool.trim() === "Chimera") {
+                        toolLink =
+                          '<a href="https://chimera.coolstar.org/" target="_blank" class="btn btn-primary btn-sm btn-rounded">Chimera</a>';
+                      } else if (tool.trim() === "Fugu14") {
+                        toolLink =
+                          '<a href="https://github.com/LinusHenze/Fugu14" target="_blank" class="btn btn-primary btn-sm btn-rounded">Fugu14</a>';
+                      } else if (tool.trim() === "NekoJB") {
+                        toolLink =
+                          '<a href="https://nekojb.com/" target="_blank" class="btn btn-primary btn-sm btn-rounded">NekoJB</a>';
+                      } else {
+                        toolLink = `<span class="btn btn-secondary btn-sm btn-rounded">${tool.trim()}</span>`;
+                      }
+                      return toolLink;
+                    })
+                    .join(" ");
 
-                            return `
+                  return `
                                 <tr style="background-color: transparent;">
                                     <td>${info.device}</td>
-                                    <td>${info.chip}</td>
                                     <td class="jailbreak-tools">${tools}</td>
                                 </tr>
                             `;
-                        }).join('');
-                        jailbreakHtml += `
+                })
+                .join("");
+              jailbreakHtml += `
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </section>
                         `;
-                        document.getElementById('jailbreak-info').innerHTML = `
+              document.getElementById("jailbreak-info").innerHTML = `
                             <div class="mt-3">
                                 <h5><strong>Yes! :)</strong></h5>
                                 <p>${deviceModel} with ${osName} ${osVersion} can be jailbroken.</p>
                                 ${jailbreakHtml}
                             </div>
                         `;
-                    } else {
-                        document.getElementById('jailbreak-info').innerHTML = `
+            } else {
+              document.getElementById("jailbreak-info").innerHTML = `
                             <div class="mt-3">
                                 <h5><strong>Sadly :'(</strong></h5>
                                 <p>No jailbreak available for ${deviceModel} with ${osName} ${osVersion}.</p>
                             </div>
                         `;
-                    }
-                }
-            });
-        }
+            }
+          },
+        });
+      }
     </script>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <h1 class="text-center my-4">Can I Jailbreak?</h1>
-        <div id="jailbreak-info" class="text-center"></div>
+      <h1 class="text-center my-4">Can I Jailbreak?</h1>
+      <div id="jailbreak-info" class="text-center"></div>
     </div>
     <!-- Tambahkan Bootstrap JS dan dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -162,46 +184,46 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- Tambahkan CSS untuk media queries -->
     <style>
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 15px;
-            }
-            .mt-3 {
-                margin: 10px 0;
-            }
+      @media (max-width: 768px) {
+        .container {
+          padding: 0 15px;
         }
-        /* Tambahkan CSS untuk meratakan teks ke kiri dalam tabel */
-        table td {
-            text-align: left;
+        .mt-3 {
+          margin: 10px 0;
         }
-        /* Tambahkan CSS untuk mengatur ulang tata letak tombol menggunakan Flexbox */
+      }
+      /* Tambahkan CSS untuk meratakan teks ke kiri dalam tabel */
+      table td {
+        text-align: left;
+      }
+      /* Tambahkan CSS untuk mengatur ulang tata letak tombol menggunakan Flexbox */
+      .jailbreak-tools {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        text-align: left; /* Pastikan teks tetap rata kiri */
+      }
+      /* Media query untuk perangkat dengan lebar layar maksimal 768px */
+      @media (max-width: 768px) {
         .jailbreak-tools {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
+          flex-direction: column;
+          align-items: flex-start; /* Pastikan teks tetap rata kiri */
         }
+      }
 
-        /* Media query untuk perangkat dengan lebar layar maksimal 768px */
-        @media (max-width: 768px) {
-            .jailbreak-tools {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
+      /* Tambahkan CSS untuk memberikan tampilan card pada section */
+      .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        padding: 16px;
+        margin: 10px 0;
+        background-color: #1a1a1a; /* Dark background */
+        color: #ffffff; /* White text */
+      }
 
-        /* Tambahkan CSS untuk memberikan tampilan card pada section */
-        .card {
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-            padding: 16px;
-            margin: 10px 0;
-            background-color: #1a1a1a; /* Dark background */
-            color: #ffffff; /* White text */
-        }
-
-        /* Ubah warna h5 menjadi biru */
-        h5 {
-            color: #007bff;
-        }
+      /* Ubah warna h5 menjadi biru */
+      h5 {
+        color: #007bff;
+      }
     </style>
-</body>
+  </body>
 </html>
