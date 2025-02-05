@@ -13,6 +13,31 @@
     <link href="custom.css" rel="stylesheet" />
     <!-- PapaParse for CSV parsing -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <!-- Add CSS for landscape notification -->
+    <style>
+        .landscape-alert {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background: var(--bs-warning-bg-subtle);
+            border: 1px solid var(--bs-warning-border-subtle);
+            color: var(--bs-warning-text);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+            max-width: 90%;
+        }
+        
+        @media (max-width: 768px) and (orientation: portrait) {
+            .table-responsive {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+        }
+    </style>
   </head>
   <body class="apple-theme">
     <div class="hero-section" style="min-height: auto; padding: 2rem 0;">
@@ -39,6 +64,12 @@
       </div>
     </div>
 
+    <!-- Add landscape notification element -->
+    <div id="landscapeAlert" class="landscape-alert">
+        <i class="fas fa-sync-alt me-2"></i>
+        For better viewing experience, please rotate your device to landscape mode
+    </div>
+
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         const urlParams = new URLSearchParams(window.location.search);
@@ -56,6 +87,23 @@
         
         document.querySelector('.csv-title').textContent = `iOS ${csvFile.split('/')[1].split('.')[0]} Compatibility`;
         
+        // Add mobile detection and orientation check
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        const landscapeAlert = document.getElementById('landscapeAlert');
+        
+        function checkOrientation() {
+            if (isMobile) {
+                const isPortrait = window.matchMedia("(orientation: portrait)").matches;
+                landscapeAlert.style.display = isPortrait ? 'block' : 'none';
+            }
+        }
+
+        // Initial check
+        checkOrientation();
+        
+        // Add orientation change listener
+        window.addEventListener('resize', checkOrientation);
+
         Papa.parse(csvFile, {
           download: true,
           header: true,
@@ -63,34 +111,36 @@
           complete: function(results) {
             const headers = Object.keys(results.data[0]);
             let tableHtml = `
-              <table class="table">
-                <thead>
-                  <tr>
-                    ${headers.map(header => `<th>${header}</th>`).join('')}
-                  </tr>
-                </thead>
-                <tbody>
-                  ${results.data.map(row => {
-                    if (Object.values(row).every(value => !value)) return '';
-                    return `
-                      <tr>
-                        ${headers.map(header => {
-                          const value = row[header];
-                          if (value === "No JB") {
-                            return `<td><span class="status-pill no-jb">No Jailbreak</span></td>`;
-                          } else if (value === "N/A") {
-                            return `<td><span class="status-pill na">Not Available</span></td>`;
-                          } else if (value && value !== "") {
-                            return `<td><span class="status-pill available">${value}</span></td>`;
-                          } else {
-                            return '<td>-</td>';
-                          }
-                        }).join('')}
-                      </tr>
-                    `;
-                  }).join('')}
-                </tbody>
-              </table>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      ${headers.map(header => `<th>${header}</th>`).join('')}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${results.data.map(row => {
+                      if (Object.values(row).every(value => !value)) return '';
+                      return `
+                        <tr>
+                          ${headers.map(header => {
+                            const value = row[header];
+                            if (value === "No JB") {
+                              return `<td><span class="status-pill no-jb">No Jailbreak</span></td>`;
+                            } else if (value === "N/A") {
+                              return `<td><span class="status-pill na">Not Available</span></td>`;
+                            } else if (value && value !== "") {
+                              return `<td><span class="status-pill available">${value}</span></td>`;
+                            } else {
+                              return '<td>-</td>';
+                            }
+                          }).join('')}
+                        </tr>
+                      `;
+                    }).join('')}
+                  </tbody>
+                </table>
+              </div>
             `;
             document.getElementById('csvContent').innerHTML = tableHtml;
           },
