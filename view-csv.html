@@ -47,18 +47,19 @@
         if (!csvFile) {
           document.getElementById('csvContent').innerHTML = `
             <div class="text-center py-5">
-              <i class="fas fa-exclamation-circle fa-2x mb-3 text-warning"></i>
-              <p>No CSV file specified.</p>
+              <i class="fas fa-exclamation-circle fa-2x mb-3 text-danger"></i>
+              <p>No CSV file specified</p>
             </div>
           `;
           return;
         }
-
+        
         document.querySelector('.csv-title').textContent = `iOS ${csvFile.split('/')[1].split('.')[0]} Compatibility`;
         
         Papa.parse(csvFile, {
           download: true,
           header: true,
+          skipEmptyLines: true,
           complete: function(results) {
             const headers = Object.keys(results.data[0]);
             let tableHtml = `
@@ -69,22 +70,25 @@
                   </tr>
                 </thead>
                 <tbody>
-                  ${results.data.map(row => `
-                    <tr>
-                      ${headers.map(header => {
-                        const value = row[header];
-                        if (value === "No JB") {
-                          return `<td><span class="status-pill no-jb">No Jailbreak</span></td>`;
-                        } else if (value === "N/A") {
-                          return `<td><span class="status-pill na">Not Available</span></td>`;
-                        } else if (value && value !== "") {
-                          return `<td><span class="status-pill available">${value}</span></td>`;
-                        } else {
-                          return '<td>-</td>';
-                        }
-                      }).join('')}
-                    </tr>
-                  `).join('')}
+                  ${results.data.map(row => {
+                    if (Object.values(row).every(value => !value)) return '';
+                    return `
+                      <tr>
+                        ${headers.map(header => {
+                          const value = row[header];
+                          if (value === "No JB") {
+                            return `<td><span class="status-pill no-jb">No Jailbreak</span></td>`;
+                          } else if (value === "N/A") {
+                            return `<td><span class="status-pill na">Not Available</span></td>`;
+                          } else if (value && value !== "") {
+                            return `<td><span class="status-pill available">${value}</span></td>`;
+                          } else {
+                            return '<td>-</td>';
+                          }
+                        }).join('')}
+                      </tr>
+                    `;
+                  }).join('')}
                 </tbody>
               </table>
             `;

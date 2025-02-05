@@ -103,6 +103,8 @@
             csvFile = "chart/16.csv";
           } else if (osVersion.startsWith("15")) {
             csvFile = "chart/15.csv";
+            // Add debug logging for iOS 15 version detection
+            console.log("Detected iOS 15.x - Full version:", osVersion);
           } else if (osVersion.startsWith("14")) {
             csvFile = "chart/14.csv";
           } else if (osVersion.startsWith("13")) {
@@ -217,16 +219,24 @@
           Papa.parse(csvFile, {
             download: true,
             header: true,
+            skipEmptyLines: true,
             complete: function (results) {
               // Clear the interval just in case
               clearInterval(animationInterval);
               
               var data = results.data;
               var jailbreakInfo = [];
+              
+              // Add debug logging
+              console.log("CSV Data:", data);
+              console.log("Looking for iOS version:", osVersion);
 
               for (const element of data) {
                 var row = element;
                 var osColumn = `iOS ${osVersion}`;
+                console.log("Checking column:", osColumn);
+                console.log("Row data:", row);
+                
                 if (
                   row[osColumn] &&
                   row[osColumn] !== "No JB" &&
@@ -336,6 +346,17 @@
                 document.querySelector('.result-animation').classList.add('show');
               }, 100);
             },
+            error: function(error) {
+              console.error("Error loading CSV:", error);
+              document.getElementById("jailbreak-info").innerHTML = `
+                <div class="result-animation">
+                  <div class="status-badge none">
+                    <span>Error</span>
+                  </div>
+                  <p class="mb-4">Error loading jailbreak data. Please try again later.</p>
+                </div>
+              `;
+            }
           });
         }
       }
