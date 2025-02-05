@@ -12,9 +12,18 @@
         const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
         return isLocalhost ? '' : '/canijailbreak/';
       }
-      // Set base URL dynamically
-      const baseUrl = getBaseUrl();
-      document.write(`<base href="${baseUrl}">`);
+      
+      // Function to load CSS dynamically
+      function loadCSS() {
+        const baseUrl = getBaseUrl();
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = baseUrl + 'css/custom.css';
+        document.head.appendChild(link);
+      }
+      
+      // Load CSS after page loads
+      window.addEventListener('load', loadCSS);
     </script>
     
     <!-- SEO Meta Tags -->
