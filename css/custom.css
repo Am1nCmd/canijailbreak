@@ -1,58 +1,321 @@
 /* custom.css */
 
-/* Mengatur warna latar belakang halaman */
-body {
-    background-color: #000000;
-    color: #ffffff; /* Mengatur warna teks agar terlihat di latar belakang gelap */
+/* Apple-like theme */
+:root {
+  --apple-blue: #0071e3;
+  --apple-gray: #86868b;
+  --apple-light-bg: #fbfbfd;
+  --apple-dark-bg: #000000;
+  --apple-card-bg: #1d1d1f;
+  --apple-success: #00c853;
+  --apple-warning: #ff9500;
+  --apple-danger: #ff3b30;
 }
 
-/* Membuat button menjadi rounded */
-.btn-rounded {
-    border-radius: 50px;
+.apple-theme {
+  background: var(--apple-dark-bg);
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
 
-/* Contoh: Mengubah warna latar belakang card */
+/* Typography */
+h1, .display-4 {
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.lead {
+  font-weight: 400;
+  color: var(--apple-gray) !important;
+}
+
+/* Hero Section */
+.hero-section {
+  min-height: 100vh;
+  padding: 2rem 0;
+  background: linear-gradient(180deg, #000000 0%, #1a1a1a 100%);
+}
+
+/* Card Styling */
 .card {
-    background-color: #1a1a1a;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 1.25rem;
+  overflow: hidden;
 }
 
-/* Contoh: Mengubah warna teks judul card */
-.card-title {
-    color: #007bff;
+.card:hover {
+  transform: none;
+  box-shadow: none;
 }
 
-/* Contoh: Mengubah warna teks paragraf card */
-.card-text {
-    color: #ffffff;
+.card-body {
+  padding: 0;
 }
 
-/* Mengatur warna teks dalam tabel menjadi putih */
-.table th, .table td {
-    color: #ffffff;
-    text-align: left; /* Membuat teks dalam tabel diratakan ke kiri */
+/* Enhanced Table Styling */
+.table-container {
+  border-radius: 1rem;
+  overflow: hidden;
+  margin: 1rem 0;
 }
 
-/* Mengatur warna teks menjadi putih untuk elemen dengan kelas text-white */
-.text-white {
-    color: #ffffff !important;
+.table {
+  color: #ffffff;
+  margin-bottom: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
 }
 
-/* Tambahkan CSS untuk meratakan teks ke kiri dalam tabel */
-table td {
-    text-align: left;
+.table thead {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Tambahkan CSS untuk mengatur ulang tata letak tombol menggunakan Flexbox */
+.table thead th {
+  border: none;
+  padding: 1rem;
+  color: var(--apple-gray);
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  background: transparent;
+}
+
+.table tbody tr {
+  transition: all 0.2s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.table td {
+  padding: 1rem;
+  border: none;
+  vertical-align: middle;
+  font-size: 0.95rem;
+}
+
+.table td:first-child {
+  font-weight: 500;
+  color: #ffffff;
+}
+
+/* Status Badges */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.75rem;
+  border-radius: 2rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  margin-right: 0.5rem;
+  border: 1px solid currentColor;
+  background: transparent;
+}
+
+.status-badge:before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.status-badge.available {
+  background: rgba(0, 200, 83, 0.1);
+  color: var(--apple-success);
+}
+
+.status-badge.available:before {
+  background: var(--apple-success);
+}
+
+.status-badge.partial {
+  background: rgba(255, 149, 0, 0.1);
+  color: var(--apple-warning);
+}
+
+.status-badge.partial:before {
+  background: var(--apple-warning);
+}
+
+.status-badge.none {
+  background: rgba(255, 59, 48, 0.1);
+  color: var(--apple-danger);
+}
+
+.status-badge.none:before {
+  background: var(--apple-danger);
+}
+
+/* Jailbreak Tools Container Enhancement */
 .jailbreak-tools {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
 }
 
-/* Media query untuk perangkat dengan lebar layar maksimal 768px */
+.jailbreak-tools .btn {
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.jailbreak-tools .btn:after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.jailbreak-tools .btn:hover:after {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Button Styling */
+.btn {
+  border-radius: 980px;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: var(--apple-blue);
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #0077ed;
+  transform: scale(1.02);
+}
+
+.btn-secondary {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Status Messages */
+.mt-3 h5 {
+  color: var(--apple-blue);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+/* Responsive Enhancements */
 @media (max-width: 768px) {
-    .jailbreak-tools {
-        flex-direction: column;
-        align-items: center;
-    }
+  .hero-section {
+    padding: 1rem;
+  }
+  
+  .table-container {
+    margin: 1rem -1rem;
+    border-radius: 0;
+  }
+  
+  .table thead {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+  
+  .table td, .table th {
+    padding: 1rem 0.75rem;
+  }
+  
+  .jailbreak-tools {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+  
+  .jailbreak-tools .btn {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .status-badge {
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#jailbreak-info {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Loading Animation */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.loading {
+  background: linear-gradient(
+    90deg,
+    var(--apple-card-bg) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    var(--apple-card-bg) 100%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+/* Tooltip Enhancement */
+.tooltip-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-wrapper:hover:before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.5rem 1rem;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  animation: fadeIn 0.2s ease forwards;
 }
