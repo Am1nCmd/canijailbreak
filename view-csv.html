@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en" data-bs-theme="dark">
+  <head>
+    <title>CSV Viewer - Can I Jailbreak</title>
+    <!-- Meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Custom CSS -->
+    <link href="css/custom.css" rel="stylesheet" />
+    <!-- PapaParse for CSV parsing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+  </head>
+  <body class="apple-theme">
+    <div class="hero-section" style="min-height: auto; padding: 2rem 0;">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-10">
+            <div class="content-wrapper csv-viewer">
+              <div class="d-flex align-items-center justify-content-between mb-4">
+                <a href="index.html" class="back-link">
+                  <i class="fas fa-chevron-left me-2"></i>
+                  Back to Home
+                </a>
+                <h1 class="csv-title m-0">Loading CSV...</h1>
+              </div>
+              <div id="csvContent" class="table-container">
+                <div class="loading-indicator text-center py-5">
+                  <i class="fas fa-spinner fa-spin fa-2x mb-3"></i>
+                  <p>Loading CSV content...</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const csvFile = urlParams.get('file');
+        
+        if (!csvFile) {
+          document.getElementById('csvContent').innerHTML = `
+            <div class="text-center py-5">
+              <i class="fas fa-exclamation-circle fa-2x mb-3 text-warning"></i>
+              <p>No CSV file specified.</p>
+            </div>
+          `;
+          return;
+        }
+
+        document.querySelector('.csv-title').textContent = `iOS ${csvFile.split('/')[1].split('.')[0]} Compatibility`;
+        
+        Papa.parse(csvFile, {
+          download: true,
+          header: true,
+          complete: function(results) {
+            const headers = Object.keys(results.data[0]);
+            let tableHtml = `
+              <table class="table">
+                <thead>
+                  <tr>
+                    ${headers.map(header => `<th>${header}</th>`).join('')}
+                  </tr>
+                </thead>
+                <tbody>
+                  ${results.data.map(row => `
+                    <tr>
+                      ${headers.map(header => {
+                        const value = row[header];
+                        if (value === "No JB") {
+                          return `<td><span class="status-pill no-jb">No Jailbreak</span></td>`;
+                        } else if (value === "N/A") {
+                          return `<td><span class="status-pill na">Not Available</span></td>`;
+                        } else if (value && value !== "") {
+                          return `<td><span class="status-pill available">${value}</span></td>`;
+                        } else {
+                          return '<td>-</td>';
+                        }
+                      }).join('')}
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+            `;
+            document.getElementById('csvContent').innerHTML = tableHtml;
+          },
+          error: function(error) {
+            document.getElementById('csvContent').innerHTML = `
+              <div class="text-center py-5">
+                <i class="fas fa-exclamation-circle fa-2x mb-3 text-danger"></i>
+                <p>Error loading CSV file: ${error}</p>
+              </div>
+            `;
+          }
+        });
+      });
+    </script>
+
+    <!-- Bootstrap 5 Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html> 

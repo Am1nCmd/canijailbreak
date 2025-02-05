@@ -34,30 +34,140 @@ h1, .display-4 {
   min-height: 100vh;
   padding: 2rem 0;
   background: linear-gradient(180deg, #000000 0%, #1a1a1a 100%);
-}
-
-/* Card Styling */
-.card {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 1.25rem;
+  position: relative;
   overflow: hidden;
 }
 
-.card:hover {
-  transform: none;
-  box-shadow: none;
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.03) 0%,
+    transparent 50%
+  );
+  animation: rotate 30s linear infinite;
 }
 
-.card-body {
-  padding: 0;
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.content-wrapper {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 2rem;
+  padding: 2rem;
+  margin-top: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Device Info Badge */
+.device-info {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+  color: var(--apple-gray);
+}
+
+.device-info i {
+  font-size: 1rem;
+  color: var(--apple-blue);
+}
+
+/* Title Animation */
+.display-4 {
+  background: linear-gradient(
+    to right,
+    #fff 20%,
+    var(--apple-blue) 40%,
+    var(--apple-blue) 60%,
+    #fff 80%
+  );
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 8s linear infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* Loading Pulse */
+.loading-pulse {
+  position: relative;
+}
+
+.loading-pulse::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    var(--apple-blue) 0%,
+    transparent 75%
+  );
+  opacity: 0.1;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.1;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 0.1;
+  }
 }
 
 /* Enhanced Table Styling */
 .table-container {
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 1rem;
   overflow: hidden;
   margin: 1rem 0;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.card {
+  background: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.card-body {
+  padding: 0;
 }
 
 .table {
@@ -66,15 +176,16 @@ h1, .display-4 {
   border-collapse: separate;
   border-spacing: 0;
   width: 100%;
+  background: transparent;
 }
 
 .table thead {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: transparent;
 }
 
 .table thead th {
   border: none;
-  padding: 1rem;
+  padding: 1.25rem 1rem;
   color: var(--apple-gray);
   font-weight: 500;
   text-transform: uppercase;
@@ -83,9 +194,17 @@ h1, .display-4 {
   background: transparent;
 }
 
+.table thead th:first-child {
+  padding-left: 1.5rem;
+}
+
+.table thead th:last-child {
+  padding-right: 1.5rem;
+}
+
 .table tbody tr {
   transition: all 0.2s ease;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background: transparent;
 }
 
 .table tbody tr:hover {
@@ -93,15 +212,21 @@ h1, .display-4 {
 }
 
 .table td {
-  padding: 1rem;
+  padding: 1.25rem 1rem;
   border: none;
   vertical-align: middle;
   font-size: 0.95rem;
+  background: transparent;
 }
 
 .table td:first-child {
+  padding-left: 1.5rem;
   font-weight: 500;
   color: #ffffff;
+}
+
+.table td:last-child {
+  padding-right: 1.5rem;
 }
 
 /* Status Badges */
@@ -113,9 +238,15 @@ h1, .display-4 {
   font-size: 0.875rem;
   font-weight: 500;
   line-height: 1;
-  margin-right: 0.5rem;
+  margin-bottom: 1rem;
   border: 1px solid currentColor;
   background: transparent;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .status-badge:before {
@@ -156,62 +287,104 @@ h1, .display-4 {
 
 /* Jailbreak Tools Container Enhancement */
 .jailbreak-tools {
-  display: flex;
+  display: inline-flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: 0.5rem;
   align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .jailbreak-tools .btn {
   margin: 0;
   position: relative;
   overflow: hidden;
+  min-width: 120px;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  font-size: 0.8125rem;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
-.jailbreak-tools .btn:after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
-  transform: scale(0);
-  opacity: 0;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+.jailbreak-tools .btn-primary {
+  background: rgba(0, 113, 227, 0.2);
+  border: 1px solid rgba(0, 113, 227, 0.3);
+  color: var(--apple-blue);
 }
 
-.jailbreak-tools .btn:hover:after {
-  transform: scale(1);
-  opacity: 1;
+.jailbreak-tools .btn-primary:hover {
+  background: var(--apple-blue);
+  border-color: var(--apple-blue);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 113, 227, 0.2);
+}
+
+.jailbreak-tools .btn-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--apple-gray);
+}
+
+.jailbreak-tools .btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  transform: translateY(-1px);
+}
+
+/* Table cell adjustments for buttons */
+.table td.jailbreak-tools {
+  padding: 0.75rem 1.5rem;
+  text-align: center;
 }
 
 /* Button Styling */
 .btn {
   border-radius: 980px;
-  padding: 0.5rem 1.25rem;
+  padding: 0.625rem 1.25rem;
   font-size: 0.875rem;
   font-weight: 500;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .btn-primary {
-  background-color: var(--apple-blue);
+  background: var(--apple-blue);
   border: none;
+  box-shadow: 0 0 0 0 rgba(0, 113, 227, 0.3);
 }
 
 .btn-primary:hover {
-  background-color: #0077ed;
-  transform: scale(1.02);
+  background: linear-gradient(180deg, #0077ed 0%, var(--apple-blue) 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
 
 .btn-secondary {
-  background-color: rgba(255, 255, 255, 0.1);
-  border: none;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .btn-secondary:hover {
-  background-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 /* Status Messages */
@@ -228,35 +401,48 @@ h1, .display-4 {
   }
   
   .table-container {
-    margin: 1rem -1rem;
+    border-left: none;
+    border-right: none;
     border-radius: 0;
+    margin: 1rem -1rem;
   }
   
-  .table thead {
-    position: sticky;
-    top: 0;
-    z-index: 1;
-  }
-  
-  .table td, .table th {
+  .table td, 
+  .table th {
     padding: 1rem 0.75rem;
   }
   
+  .table td:first-child,
+  .table th:first-child {
+    padding-left: 1rem;
+  }
+  
+  .table td:last-child,
+  .table th:last-child {
+    padding-right: 1rem;
+  }
+  
   .jailbreak-tools {
-    flex-direction: column;
-    align-items: stretch;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 0.5rem;
   }
   
   .jailbreak-tools .btn {
-    width: 100%;
-    text-align: center;
+    min-width: auto;
+    flex: 0 0 auto;
+    width: auto;
+  }
+  
+  .table td.jailbreak-tools {
+    padding: 0.75rem 1rem;
   }
   
   .status-badge {
-    width: 100%;
+    width: fit-content;
     justify-content: center;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
   }
 }
 
@@ -318,4 +504,455 @@ h1, .display-4 {
   pointer-events: none;
   opacity: 0;
   animation: fadeIn 0.2s ease forwards;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Footer Styling */
+.footer {
+  padding: 2rem 0;
+  background: var(--apple-dark-bg);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  margin-top: 2rem;
+}
+
+.footer-link {
+  color: var(--apple-gray);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  padding: 0.75rem 1.5rem;
+  border-radius: 980px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.footer-link:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-1px);
+}
+
+.footer-link i {
+  font-size: 1.25rem;
+}
+
+.made-with-love {
+  color: var(--apple-gray);
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+.made-with-love p {
+  margin-bottom: 0.5rem;
+}
+
+.made-with-love i {
+  color: var(--apple-danger);
+  margin: 0 0.25rem;
+}
+
+.made-with-love .credit-link {
+  color: var(--apple-blue);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  padding: 0.1rem 0.3rem;
+  border-radius: 4px;
+}
+
+.made-with-love .credit-link:hover {
+  background: rgba(0, 113, 227, 0.1);
+  color: #ffffff;
+}
+
+.made-with-love .credit-link.ams1gn {
+  color: var(--apple-danger);
+}
+
+.made-with-love .credit-link.ams1gn:hover {
+  background: rgba(255, 59, 48, 0.1);
+  color: #ffffff;
+}
+
+.powered-by {
+  margin-top: 0.25rem;
+  color: var(--apple-gray);
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.made-with-love i.pulse {
+  display: inline-block;
+  animation: pulse 1.5s ease infinite;
+}
+
+/* Responsive Footer */
+@media (max-width: 768px) {
+  .footer {
+    padding: 1.5rem 0;
+    margin-top: 1rem;
+  }
+  
+  .footer-link {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+  }
+  
+  .made-with-love {
+    font-size: 0.875rem;
+  }
+}
+
+.csv-list-container {
+  max-width: 800px;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.3s ease;
+}
+
+.csv-list-container.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#showCsvList {
+  background: var(--apple-blue);
+  border: none;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+#showCsvList:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3);
+}
+
+#showCsvList i {
+  transition: transform 0.3s ease;
+}
+
+#showCsvList.active i {
+  transform: rotate(180deg);
+}
+
+/* CSV Viewer Styles */
+.back-link {
+  color: var(--apple-gray);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 980px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: inline-flex;
+  align-items: center;
+}
+
+.back-link:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-1px);
+}
+
+.csv-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 2rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.status-pill:before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.status-pill.available {
+  background: rgba(0, 200, 83, 0.1);
+  color: var(--apple-success);
+}
+
+.status-pill.available:before {
+  background: var(--apple-success);
+}
+
+.status-pill.no-jb {
+  background: rgba(255, 59, 48, 0.1);
+  color: var(--apple-danger);
+}
+
+.status-pill.no-jb:before {
+  background: var(--apple-danger);
+}
+
+.status-pill.na {
+  background: rgba(134, 134, 139, 0.1);
+  color: var(--apple-gray);
+}
+
+.status-pill.na:before {
+  background: var(--apple-gray);
+}
+
+.loading-indicator {
+  color: var(--apple-gray);
+}
+
+.loading-indicator i {
+  color: var(--apple-blue);
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .csv-title {
+    font-size: 1.25rem;
+  }
+  
+  .back-link {
+    font-size: 0.875rem;
+    padding: 0.375rem 0.75rem;
+  }
+}
+
+/* Add horizontal scroll for CSV table */
+.csv-viewer .table-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  scrollbar-width: thin;
+  scrollbar-color: var(--apple-gray) transparent;
+}
+
+/* Custom scrollbar styling */
+.csv-viewer .table-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.csv-viewer .table-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.csv-viewer .table-container::-webkit-scrollbar-thumb {
+  background: var(--apple-gray);
+  border-radius: 4px;
+}
+
+.csv-viewer .table-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(134, 134, 139, 0.8);
+}
+
+.csv-viewer .table {
+  min-width: 800px; /* Ensures table doesn't get too squished */
+  margin-bottom: 0;
+}
+
+/* Sticky first column for better UX */
+.csv-viewer .table th:first-child,
+.csv-viewer .table td:first-child {
+  position: sticky;
+  left: 0;
+  background: var(--apple-dark-bg);
+  z-index: 1;
+}
+
+.csv-viewer .table th:first-child {
+  z-index: 2;
+}
+
+/* Add shadow to indicate scroll */
+.csv-viewer .table td:first-child::after,
+.csv-viewer .table th:first-child::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -10px;
+  bottom: 0;
+  width: 10px;
+  pointer-events: none;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.2), transparent);
+}
+
+/* CSV Section Styling */
+.csv-section {
+  text-align: center;
+  position: relative;
+}
+
+.csv-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -2rem;
+  right: -2rem;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+}
+
+#showCsvList {
+  background: rgba(0, 113, 227, 0.2);
+  border: 1px solid rgba(0, 113, 227, 0.3);
+  color: var(--apple-blue);
+  font-size: 0.9375rem;
+  padding: 0.75rem 2rem;
+  transition: all 0.3s ease;
+}
+
+#showCsvList:hover {
+  background: var(--apple-blue);
+  border-color: var(--apple-blue);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 113, 227, 0.2);
+}
+
+#showCsvList.active {
+  background: var(--apple-blue);
+  color: white;
+}
+
+.csv-list-container {
+  max-width: 800px;
+  margin: 1.5rem auto 0;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.3s ease;
+}
+
+.csv-list-container.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .csv-section::before {
+    left: -1rem;
+    right: -1rem;
+  }
+  
+  #showCsvList {
+    padding: 0.625rem 1.5rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Loading Animation Styles */
+.checking-animation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.checking-animation .icon-container {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 1.5rem;
+}
+
+.checking-animation .icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  color: var(--apple-blue);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.checking-animation .icon.active {
+  opacity: 1;
+  animation: iconPulse 1.5s ease infinite;
+}
+
+.checking-animation .status-text {
+  font-size: 1.1rem;
+  color: var(--apple-gray);
+  margin-bottom: 0.5rem;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.checking-animation .status-text.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.checking-animation .progress-bar {
+  width: 200px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.checking-animation .progress-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 30%;
+  background: var(--apple-blue);
+  border-radius: 2px;
+  animation: progress 2s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+  0% { transform: translate(-50%, -50%) scale(0.95); opacity: 0.5; }
+  50% { transform: translate(-50%, -50%) scale(1.05); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(0.95); opacity: 0.5; }
+}
+
+@keyframes progress {
+  0% { left: -30%; }
+  100% { left: 100%; }
+}
+
+/* Result Animation */
+.result-animation {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.result-animation.show {
+  opacity: 1;
+  transform: translateY(0);
 }

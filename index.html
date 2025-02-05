@@ -1,12 +1,50 @@
 <!DOCTYPE html>
 <html lang="en" xml:lang="en" data-bs-theme="dark">
   <head>
-    <title>Can I Jailbreak</title>
+    <title>Can I Jailbreak - Check Your iOS Device Jailbreak Status</title>
     <!-- Meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Check if your iPhone or iPad can be jailbroken. Get instant information about jailbreak availability and compatible tools for your iOS version.">
+    <meta name="keywords" content="jailbreak, iOS, iPhone, iPad, checkra1n, palera1n, NekoJB, Dopamine, TrollStore">
+    <meta name="author" content="Am1nCmd">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://canijailbreak.ams1gn.id/">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Can I Jailbreak - iOS Device Compatibility Checker">
+    <meta property="og:description" content="Instantly check jailbreak availability for your iPhone or iPad. Find compatible tools and get started with jailbreaking your iOS device.">
+    <meta property="og:url" content="https://canijailbreak.ams1gn.id/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Can I Jailbreak">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Can I Jailbreak - iOS Device Compatibility Checker">
+    <meta name="twitter:description" content="Instantly check jailbreak availability for your iPhone or iPad. Find compatible tools and get started with jailbreaking your iOS device.">
+    <meta name="twitter:creator" content="@Am1nCmd">
+    
+    <!-- Apple-specific Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Can I Jailbreak">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#000000">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Custom CSS -->
     <link href="css/custom.css" rel="stylesheet" />
     <!-- Scripts -->
@@ -26,12 +64,35 @@
           deviceModel === "Unknown" ||
           (deviceModel !== "iPhone" && deviceModel !== "iPad")
         ) {
+          // Show checking animation first
           document.getElementById("jailbreak-info").innerHTML = `
-                    <div class="mt-3">
-                        <h5><strong>Sorry :(</strong></h5>
-                        <p>Your device is not supported.</p>
-                    </div>
-                `;
+            <div class="checking-animation">
+              <div class="icon-container">
+                <i class="fas fa-mobile-alt icon active"></i>
+              </div>
+              <div class="status-text active">Checking your device...</div>
+              <div class="progress-bar"></div>
+            </div>
+          `;
+
+          // After animation delay, show the not supported message
+          setTimeout(() => {
+            document.getElementById("jailbreak-info").innerHTML = `
+              <div class="result-animation">
+                <div class="status-badge none">
+                  <span>Device Not Supported</span>
+                </div>
+                <div class="mt-3">
+                  <h5 class="mb-2"><strong>Sorry :(</strong></h5>
+                  <p class="mb-0">This website only supports iPhone and iPad devices.</p>
+                </div>
+              </div>
+            `;
+            // Trigger the show animation
+            setTimeout(() => {
+              document.querySelector('.result-animation').classList.add('show');
+            }, 100);
+          }, 2000);
         } else {
           let csvFile;
           if (osVersion.startsWith("18")) {
@@ -49,12 +110,62 @@
           } else if (osVersion.startsWith("12")) {
             csvFile = "chart/12.csv";
           } else {
+            // Show checking animation first
             document.getElementById("jailbreak-info").innerHTML = `
-                        <div class="mt-3">
-                            <h5><strong>Sadly :'(</strong></h5>
-                            <p>No jailbreak available for ${deviceModel} with ${osName} ${osVersion}.</p>
-                        </div>
-                    `;
+              <div class="checking-animation">
+                <div class="icon-container">
+                  <i class="fas fa-mobile-alt icon"></i>
+                  <i class="fas fa-search icon"></i>
+                  <i class="fas fa-times-circle icon"></i>
+                </div>
+                <div class="status-text">Checking iOS version...</div>
+                <div class="progress-bar"></div>
+              </div>
+            `;
+
+            // Start animation sequence
+            const icons = document.querySelectorAll('.checking-animation .icon');
+            const statusText = document.querySelector('.checking-animation .status-text');
+            const statusMessages = [
+              'Checking iOS version...',
+              'Analyzing compatibility...',
+              'Version not supported'
+            ];
+            let currentStep = 0;
+
+            // Activate first icon and text immediately
+            icons[0].classList.add('active');
+            statusText.classList.add('active');
+
+            const animationInterval = setInterval(() => {
+              if (currentStep < 2) {
+                icons[currentStep].classList.remove('active');
+                currentStep++;
+                icons[currentStep].classList.add('active');
+                statusText.textContent = statusMessages[currentStep];
+              } else {
+                clearInterval(animationInterval);
+                // Show the final message after animation
+                setTimeout(() => {
+                  document.getElementById("jailbreak-info").innerHTML = `
+                    <div class="result-animation">
+                      <div class="status-badge none">
+                        <span>No Jailbreak Available</span>
+                      </div>
+                      <div class="mt-3">
+                        <h5 class="mb-2"><strong>Sadly :'(</strong></h5>
+                        <p class="mb-0">No jailbreak available for ${deviceModel} with ${osName} ${osVersion}.</p>
+                      </div>
+                    </div>
+                  `;
+                  // Trigger the show animation
+                  setTimeout(() => {
+                    document.querySelector('.result-animation').classList.add('show');
+                  }, 100);
+                }, 500);
+              }
+            }, 1000);
+
             return;
           }
           checkJailbreak(osVersion, csvFile, deviceModel, osName);
@@ -62,130 +173,171 @@
       });
 
       function checkJailbreak(osVersion, csvFile, deviceModel, osName) {
-        // Show loading state
+        // Show loading animation
         document.getElementById("jailbreak-info").innerHTML = `
-          <div class="mt-3">
-            <div class="card loading">
-              <div class="card-body" style="height: 200px;"></div>
+          <div class="checking-animation">
+            <div class="icon-container">
+              <i class="fas fa-mobile-alt icon"></i>
+              <i class="fas fa-search icon"></i>
+              <i class="fas fa-check-circle icon"></i>
             </div>
+            <div class="status-text">Checking device compatibility...</div>
+            <div class="progress-bar"></div>
           </div>
         `;
 
-        Papa.parse(csvFile, {
-          download: true,
-          header: true,
-          complete: function (results) {
-            var data = results.data;
-            var jailbreakInfo = [];
+        // Start animation sequence
+        const icons = document.querySelectorAll('.checking-animation .icon');
+        const statusText = document.querySelector('.checking-animation .status-text');
+        const statusMessages = [
+          'Checking device compatibility...',
+          'Analyzing iOS version...',
+          'Verifying jailbreak status...'
+        ];
+        let currentStep = 0;
 
-            for (const element of data) {
-              var row = element;
-              var osColumn = `iOS ${osVersion}`;
-              if (
-                row[osColumn] &&
-                row[osColumn] !== "No JB" &&
-                row[osColumn] !== "N/A"
-              ) {
-                jailbreakInfo.push({
-                  device: row.Device,
-                  status: row[osColumn],
-                });
-              }
-            }
+        // Activate first icon and text immediately
+        icons[0].classList.add('active');
+        statusText.classList.add('active');
 
-            if (jailbreakInfo.length > 0) {
-              var jailbreakHtml = `
-                <section>
-                  <div class="card">
-                    <div class="card-body p-0">
-                      <div class="table-container">
-                        <table class="table">
-                          <thead>
-                            <tr>
-                              <th>Device</th>
-                              <th>Jailbreak Tools</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-              `;
-              jailbreakHtml += jailbreakInfo
-                .map((info) => {
-                  let tools = info.status
-                    .split(",")
-                    .map((tool) => {
-                      let toolLink;
-                      let tooltipText = "";
-                      
-                      if (tool.trim() === "Dopamine") {
-                        tooltipText = "Semi-untethered jailbreak for iOS 15.0-15.4.1";
-                        toolLink = `<div class="tooltip-wrapper" data-tooltip="${tooltipText}">
-                          <a href="https://ellekit.space/dopamine/" target="_blank" class="btn btn-primary btn-sm">Dopamine</a>
-                        </div>`;
-                      } else if (tool.trim() === "checkra1n") {
-                        tooltipText = "Semi-tethered jailbreak using checkm8 bootrom exploit";
-                        toolLink = `<div class="tooltip-wrapper" data-tooltip="${tooltipText}">
-                          <a href="https://checkra.in/" target="_blank" class="btn btn-primary btn-sm">checkra1n</a>
-                        </div>`;
-                      } else if (tool.trim() === "palera1n") {
-                        tooltipText = "Semi-tethered jailbreak for iOS 15.0-16.5";
-                        toolLink = `<div class="tooltip-wrapper" data-tooltip="${tooltipText}">
-                          <a href="https://palera.in/" target="_blank" class="btn btn-primary btn-sm">palera1n</a>
-                        </div>`;
-                      } else if (tool.trim() === "TrollStore") {
-                        tooltipText = "Persistent package installer for iOS 14.0-15.4.1";
-                        toolLink = `<div class="tooltip-wrapper" data-tooltip="${tooltipText}">
-                          <a href="https://ios.cfw.guide/installing-trollstore/" target="_blank" class="btn btn-primary btn-sm">TrollStore</a>
-                        </div>`;
-                      } else if (tool.trim() === "NekoJB") {
-                        tooltipText = "Semi-untethered jailbreak for iOS 16.0-16.6.1";
-                        toolLink = `<div class="tooltip-wrapper" data-tooltip="${tooltipText}">
-                          <a href="https://nekojb.com/" target="_blank" class="btn btn-primary btn-sm">NekoJB</a>
-                        </div>`;
-                      } else {
-                        toolLink = `<span class="btn btn-secondary btn-sm">${tool.trim()}</span>`;
-                      }
-                      return toolLink;
-                    })
-                    .join(" ");
+        const animationInterval = setInterval(() => {
+          if (currentStep < 2) {
+            icons[currentStep].classList.remove('active');
+            currentStep++;
+            icons[currentStep].classList.add('active');
+            statusText.textContent = statusMessages[currentStep];
+          } else {
+            clearInterval(animationInterval);
+            // Continue with CSV parsing after animation
+            loadJailbreakData();
+          }
+        }, 1000);
 
-                  return `
-                      <tr>
-                        <td>${info.device}</td>
-                        <td class="jailbreak-tools">${tools}</td>
-                      </tr>
-                    `;
-                })
-                .join("");
-              jailbreakHtml += `
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-              `;
+        function loadJailbreakData() {
+          Papa.parse(csvFile, {
+            download: true,
+            header: true,
+            complete: function (results) {
+              // Clear the interval just in case
+              clearInterval(animationInterval);
               
-              document.getElementById("jailbreak-info").innerHTML = `
-                <div class="mt-3">
-                  <div class="status-badge available">
-                    <span>Jailbreak Available</span>
+              var data = results.data;
+              var jailbreakInfo = [];
+
+              for (const element of data) {
+                var row = element;
+                var osColumn = `iOS ${osVersion}`;
+                if (
+                  row[osColumn] &&
+                  row[osColumn] !== "No JB" &&
+                  row[osColumn] !== "N/A"
+                ) {
+                  jailbreakInfo.push({
+                    device: row.Device,
+                    status: row[osColumn],
+                  });
+                }
+              }
+
+              // Prepare the result HTML
+              let resultHtml;
+              if (jailbreakInfo.length > 0) {
+                resultHtml = `
+                  <div class="result-animation">
+                    <div class="status-badge available">
+                      <span>Jailbreak Available</span>
+                    </div>
+                    <p class="mb-4">${deviceModel} with ${osName} ${osVersion} can be jailbroken.</p>
+                    <section>
+                      <div class="card">
+                        <div class="card-body p-0">
+                          <div class="table-container">
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th>Device</th>
+                                  <th>Jailbreak Tools</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                `;
+                resultHtml += jailbreakInfo
+                  .map((info) => {
+                    let tools = info.status
+                      .split(",")
+                      .map((tool) => {
+                        let toolLink;
+                        let tooltipText = "";
+                        
+                        if (tool.trim() === "Dopamine") {
+                          tooltipText = "Semi-untethered jailbreak for iOS 15.0-15.4.1";
+                          toolLink = `<div class="tooltip-wrapper" data-tooltip="${tooltipText}">
+                            <a href="https://ellekit.space/dopamine/" target="_blank" class="btn btn-primary btn-sm">Dopamine</a>
+                          </div>`;
+                        } else if (tool.trim() === "checkra1n") {
+                          tooltipText = "Semi-tethered jailbreak using checkm8 bootrom exploit";
+                          toolLink = `<div class="tooltip-wrapper" data-tooltip="${tooltipText}">
+                            <a href="https://checkra.in/" target="_blank" class="btn btn-primary btn-sm">checkra1n</a>
+                          </div>`;
+                        } else if (tool.trim() === "palera1n") {
+                          tooltipText = "Semi-tethered jailbreak for iOS 15.0-16.5";
+                          toolLink = `<div class="tooltip-wrapper" data-tooltip="${tooltipText}">
+                            <a href="https://palera.in/" target="_blank" class="btn btn-primary btn-sm">palera1n</a>
+                          </div>`;
+                        } else if (tool.trim() === "TrollStore") {
+                          tooltipText = "Persistent package installer for iOS 14.0-15.4.1";
+                          toolLink = `<div class="tooltip-wrapper" data-tooltip="${tooltipText}">
+                            <a href="https://ios.cfw.guide/installing-trollstore/" target="_blank" class="btn btn-primary btn-sm">TrollStore</a>
+                          </div>`;
+                        } else if (tool.trim() === "NekoJB") {
+                          tooltipText = "Semi-untethered jailbreak for iOS 16.0-16.6.1";
+                          toolLink = `<div class="tooltip-wrapper" data-tooltip="${tooltipText}">
+                            <a href="https://nekojb.com/" target="_blank" class="btn btn-primary btn-sm">NekoJB</a>
+                          </div>`;
+                        } else {
+                          toolLink = `<span class="btn btn-secondary btn-sm">${tool.trim()}</span>`;
+                        }
+                        return toolLink;
+                      })
+                      .join(" ");
+
+                    return `
+                        <tr>
+                          <td>${info.device}</td>
+                          <td class="jailbreak-tools">${tools}</td>
+                        </tr>
+                      `;
+                  })
+                  .join("");
+                resultHtml += `
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
                   </div>
-                  <p class="mb-4">${deviceModel} with ${osName} ${osVersion} can be jailbroken.</p>
-                  ${jailbreakHtml}
-                </div>
-              `;
-            } else {
-              document.getElementById("jailbreak-info").innerHTML = `
-                <div class="mt-3">
-                  <div class="status-badge none">
-                    <span>No Jailbreak Available</span>
+                `;
+              } else {
+                resultHtml = `
+                  <div class="result-animation">
+                    <div class="status-badge none">
+                      <span>No Jailbreak Available</span>
+                    </div>
+                    <p class="mb-4">No jailbreak available for ${deviceModel} with ${osName} ${osVersion}.</p>
                   </div>
-                  <p class="mb-4">No jailbreak available for ${deviceModel} with ${osName} ${osVersion}.</p>
-                </div>
-              `;
-            }
-          },
-        });
+                `;
+              }
+
+              // Update the content with animation
+              document.getElementById("jailbreak-info").innerHTML = resultHtml;
+              // Trigger animation after a small delay
+              setTimeout(() => {
+                document.querySelector('.result-animation').classList.add('show');
+              }, 100);
+            },
+          });
+        }
       }
     </script>
   </head>
@@ -194,15 +346,129 @@
       <div class="container">
         <div class="row min-vh-100 align-items-center justify-content-center text-center">
           <div class="col-12 col-md-8 col-lg-6">
-            <h1 class="display-4 fw-bold mb-4">Can I Jailbreak?</h1>
-            <p class="lead text-secondary mb-4">Check if your iOS device can be jailbroken</p>
-            <div id="jailbreak-info" class="text-center"></div>
+            <div class="content-wrapper">
+              <div class="device-info">
+                <i class="fas fa-mobile-alt"></i>
+                <span>Checking your device...</span>
+              </div>
+              <h1 class="display-4 fw-bold mb-4">Can I Jailbreak?</h1>
+              <p class="lead text-secondary mb-4">Check if your iOS device can be jailbroken</p>
+              <div id="jailbreak-info" class="text-center loading-pulse"></div>
+              
+              <div class="csv-section mt-5 pt-4 border-top border-secondary-subtle">
+                <button id="showCsvList" class="btn btn-primary mb-3">
+                  <i class="fas fa-list-ul me-2"></i>Show List
+                </button>
+                <div id="csvListContainer" class="csv-list-container" style="display: none;">
+                  <div class="table-container">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>iOS Version</th>
+                          <th>CSV File</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>iOS 18</td>
+                          <td>chart/18.csv</td>
+                          <td class="jailbreak-tools">
+                            <a href="view-csv.html?file=chart/18.csv" class="btn btn-primary btn-sm">View</a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>iOS 17</td>
+                          <td>chart/17.csv</td>
+                          <td class="jailbreak-tools">
+                            <a href="view-csv.html?file=chart/17.csv" class="btn btn-primary btn-sm">View</a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>iOS 16</td>
+                          <td>chart/16.csv</td>
+                          <td class="jailbreak-tools">
+                            <a href="view-csv.html?file=chart/16.csv" class="btn btn-primary btn-sm">View</a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>iOS 15</td>
+                          <td>chart/15.csv</td>
+                          <td class="jailbreak-tools">
+                            <a href="view-csv.html?file=chart/15.csv" class="btn btn-primary btn-sm">View</a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>iOS 14</td>
+                          <td>chart/14.csv</td>
+                          <td class="jailbreak-tools">
+                            <a href="view-csv.html?file=chart/14.csv" class="btn btn-primary btn-sm">View</a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>iOS 13</td>
+                          <td>chart/13.csv</td>
+                          <td class="jailbreak-tools">
+                            <a href="view-csv.html?file=chart/13.csv" class="btn btn-primary btn-sm">View</a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>iOS 12</td>
+                          <td>chart/12.csv</td>
+                          <td class="jailbreak-tools">
+                            <a href="view-csv.html?file=chart/12.csv" class="btn btn-primary btn-sm">View</a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
+    <footer class="footer">
+      <div class="container">
+        <div class="text-center py-4">
+          <a href="https://github.com/Am1nCmd/canijailbreak" target="_blank" class="footer-link">
+            <i class="fab fa-github"></i>
+            <span>Open source on GitHub</span>
+          </a>
+          <div class="made-with-love">
+            <p>Made with <i class="fas fa-heart pulse"></i> by <a href="https://github.com/Am1nCmd" class="credit-link">Am1nCmd</a></p>
+            <p class="powered-by">Powered by <a href="https://ams1gn.id" target="_blank" class="credit-link ams1gn">AmS1gn</a></p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
     <!-- Bootstrap 5 Bundle JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+      document.getElementById('showCsvList').addEventListener('click', function() {
+        const container = document.getElementById('csvListContainer');
+        const button = this;
+        
+        if (container.style.display === 'none') {
+          container.style.display = 'block';
+          setTimeout(() => {
+            container.classList.add('show');
+            button.classList.add('active');
+            button.innerHTML = '<i class="fas fa-chevron-up me-2"></i>Hide List';
+          }, 10);
+        } else {
+          container.classList.remove('show');
+          button.classList.remove('active');
+          button.innerHTML = '<i class="fas fa-list-ul me-2"></i>Show List';
+          setTimeout(() => {
+            container.style.display = 'none';
+          }, 300);
+        }
+      });
+    </script>
   </body>
 </html>
