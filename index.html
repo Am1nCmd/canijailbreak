@@ -6,6 +6,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
+    <script>
+      // Helper function to get base URL
+      function getBaseUrl() {
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        return isLocalhost ? '' : '/canijailbreak/';
+      }
+      // Set base URL dynamically
+      const baseUrl = getBaseUrl();
+      document.write(`<base href="${baseUrl}">`);
+    </script>
+    
     <!-- SEO Meta Tags -->
     <meta name="description" content="Check if your iPhone or iPad can be jailbroken. Get instant information about jailbreak availability and compatible tools for your iOS version.">
     <meta name="keywords" content="jailbreak, iOS, iPhone, iPad, checkra1n, palera1n, NekoJB, Dopamine, TrollStore">
@@ -46,9 +57,9 @@
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Custom CSS -->
-    <link href="./css/custom.css" rel="stylesheet" />
+    <link href="css/custom.css" rel="stylesheet" />
     <!-- Scripts -->
-    <script src="./ua-parser.min.js"></script>
+    <script src="ua-parser.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -96,19 +107,19 @@
         } else {
           let csvFile;
           if (osVersion.startsWith("18")) {
-            csvFile = "./chart/18.csv";
+            csvFile = "chart/18.csv";
           } else if (osVersion.startsWith("17")) {
-            csvFile = "./chart/17.csv";
+            csvFile = "chart/17.csv";
           } else if (osVersion.startsWith("16")) {
-            csvFile = "./chart/16.csv";
+            csvFile = "chart/16.csv";
           } else if (osVersion.startsWith("15")) {
-            csvFile = "./chart/15.csv";
+            csvFile = "chart/15.csv";
           } else if (osVersion.startsWith("14")) {
-            csvFile = "./chart/14.csv";
+            csvFile = "chart/14.csv";
           } else if (osVersion.startsWith("13")) {
-            csvFile = "./chart/13.csv";
+            csvFile = "chart/13.csv";
           } else if (osVersion.startsWith("12")) {
-            csvFile = "./chart/12.csv";
+            csvFile = "chart/12.csv";
           } else {
             // Show checking animation first
             document.getElementById("jailbreak-info").innerHTML = `
@@ -374,49 +385,49 @@
                           <td>iOS 18</td>
                           <td>chart/18.csv</td>
                           <td class="jailbreak-tools">
-                            <a href="./view-csv.html?file=./chart/18.csv" class="btn btn-primary btn-sm">View</a>
+                            <a href="view-csv.html?file=chart/18.csv" class="btn btn-primary btn-sm">View</a>
                           </td>
                         </tr>
                         <tr>
                           <td>iOS 17</td>
                           <td>chart/17.csv</td>
                           <td class="jailbreak-tools">
-                            <a href="./view-csv.html?file=./chart/17.csv" class="btn btn-primary btn-sm">View</a>
+                            <a href="view-csv.html?file=chart/17.csv" class="btn btn-primary btn-sm">View</a>
                           </td>
                         </tr>
                         <tr>
                           <td>iOS 16</td>
                           <td>chart/16.csv</td>
                           <td class="jailbreak-tools">
-                            <a href="./view-csv.html?file=./chart/16.csv" class="btn btn-primary btn-sm">View</a>
+                            <a href="view-csv.html?file=chart/16.csv" class="btn btn-primary btn-sm">View</a>
                           </td>
                         </tr>
                         <tr>
                           <td>iOS 15</td>
                           <td>chart/15.csv</td>
                           <td class="jailbreak-tools">
-                            <a href="./view-csv.html?file=./chart/15.csv" class="btn btn-primary btn-sm">View</a>
+                            <a href="view-csv.html?file=chart/15.csv" class="btn btn-primary btn-sm">View</a>
                           </td>
                         </tr>
                         <tr>
                           <td>iOS 14</td>
                           <td>chart/14.csv</td>
                           <td class="jailbreak-tools">
-                            <a href="./view-csv.html?file=./chart/14.csv" class="btn btn-primary btn-sm">View</a>
+                            <a href="view-csv.html?file=chart/14.csv" class="btn btn-primary btn-sm">View</a>
                           </td>
                         </tr>
                         <tr>
                           <td>iOS 13</td>
                           <td>chart/13.csv</td>
                           <td class="jailbreak-tools">
-                            <a href="./view-csv.html?file=./chart/13.csv" class="btn btn-primary btn-sm">View</a>
+                            <a href="view-csv.html?file=chart/13.csv" class="btn btn-primary btn-sm">View</a>
                           </td>
                         </tr>
                         <tr>
                           <td>iOS 12</td>
                           <td>chart/12.csv</td>
                           <td class="jailbreak-tools">
-                            <a href="./view-csv.html?file=./chart/12.csv" class="btn btn-primary btn-sm">View</a>
+                            <a href="view-csv.html?file=chart/12.csv" class="btn btn-primary btn-sm">View</a>
                           </td>
                         </tr>
                       </tbody>
