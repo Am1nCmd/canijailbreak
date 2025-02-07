@@ -115,7 +115,7 @@ h1, .display-4 {
   }
 }
 
-/* Loading Pulse */
+/* Loading Pulse
 .loading-pulse {
   position: relative;
 }
@@ -147,7 +147,7 @@ h1, .display-4 {
     transform: scale(0.95);
     opacity: 0.1;
   }
-}
+} */
 
 /* Enhanced Table Styling */
 .table-container {
