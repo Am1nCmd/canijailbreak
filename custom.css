@@ -121,6 +121,7 @@ h1, .display-4 {
 }
 
 .loading-pulse::after {
+  z-index:-1;
   content: '';
   position: absolute;
   inset: 0;
